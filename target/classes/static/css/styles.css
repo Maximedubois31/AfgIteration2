@@ -1,0 +1,27 @@
+.RedCssClass { color : red; }
+
+.card-body {
+    height: 250px;
+}
+.list{
+    list-style: none;
+}
+
+img.clipped {
+	position : center;
+    height: 100%; /*Scales image to 150% width of parent container*/
+    float: left; /*Floats image to left of container - clipping right hand side*/
+    float: right; /*Floats image to right of container - clipping left hand side*/
+}
+.container {
+	
+    width: 250px; /*Use this to control width of the parent container, hence the image*/
+    height: 250px;
+    overflow: hidden;
+}
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: #777;
+}

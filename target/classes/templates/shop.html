@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<div xmlns:th="http://www.thymeleaf.org" lang="fr"
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{_layout}" layout:fragment="content">
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-lg-2 bg-info p-4">
+				<h5 class="text-white">Recherche</h5>
+				<form action="#" th:action="@{/shop}" th:object="${newSearch}"
+					  method="POST">
+					<div class="row">
+						<div class="col-10">
+							<input th:field="*{searchText}"
+								   class="form-control form-control-sm" type="text"
+								   placeholder="Rechercher un produit"
+								   aria-label="Rechercher un produit">
+						</div>
+						<div class="col-2">
+							<input type="submit" class="btn btn-warning btn-sm" value="ok">
+						</div>
+					</div>
+				</form>
+				<hr class="my-4">
+				<h5 class="text-white">Filtres</h5>
+
+				<form action="#" method="post" th:action="@{/shop}"
+					  th:object="${filtre}">
+					<ul class="list">
+						<li th:each="type : ${types}">
+							<div class="ui checkbox">
+								<input type="checkbox" th:field="*{filtres}"
+									   th:value="${type.id}"> <label
+									th:text="${type.productType}"></label>
+
+							</div>
+						</li>
+					</ul>
+					<button class="btn btn-warning" type="submit">Filtrer</button>
+				</form>
+			</div>
+			<div class="col-lg-10">
+				<div class="row">
+					<div class="col-lg-3" th:each="product : ${products} ">
+						<div class="card mb-4" style="width: 18rem;">
+							<div class="container">
+								<img th:src="${product.imageUrl}" class="clipped"
+									 th:alt="${product.name}" >
+							</div>
+							<div class="card-body">
+								<h5 class="card-title" th:text="${product.name}"></h5>
+								<p class="card-text"
+								   th:text="${product.productType.productType}"></p>
+								<!-- 									id -->
+								<!-- 								<p class="card-text" -->
+								<!-- 									th:text="${price.product.id}"></p> -->
+								<p class="card-text" th:text="${product.origin}"></p>
+								<p class="card-text"
+								   th:text="${product.lowPrice +' EUR/'+ product.quantityUnity}"></p>
+
+							</div>
+
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-info mb-2"
+									data-bs-toggle="modal" th:data-bs-target="${'#id'+ product.id}" style="margin-top: 10px">
+								Détails produit</button>
+							<!-- Modal -->
+							<div class="modal fade" th:id="${'id'+ product.id}" tabindex="-1"
+								 aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-scrollable">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel"
+												th:text="${product.name}"></h5>
+											<button type="button" class="btn-close"
+													data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<img th:src="${product.imageUrl}"
+												 class="card-img-top" th:alt="${product.name}">
+											<div class="card-body">
+												Catégorie de produit :
+												<p class="card-text"
+												   th:text="${product.productType.productType}"></p>
+												Origine :
+												<p class="card-text" th:text="${product.origin}"></p>
+												<p class="card-text" th:text="${product.brand}"></p>
+												Prix :
+												<p class="card-text" th:text="${product.lowPrice}"></p>
+												Ratio minimum :
+												<p class="card-text" th:text="${product.moq}"></p>
+												Descriptif :
+												<p class="card-text" th:text="${product.description}"></p>
+												<!-- 												Id : -->
+												<!-- 												<p class="card-text" th:text="${price.product.id}"></p> -->
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-info"
+													data-bs-dismiss="modal">Fermer</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<form action="#" th:action="@{/addToPurchaseOrder}"
+								  th:object="${commandLine}" method="POST">
+								<input th:field="*{desiredQuantity}" type="number">
+								<input type="hidden" th:value="${product.id}" id="product" name="product">
+								<input type="hidden" th:value="${product.lowPrice}" id="activePrice" name="activePrice">
+								<button type="submit" class="btn btn-info" style="margin-top: 10px">Ajouter au panier</button>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
