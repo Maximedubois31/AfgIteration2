@@ -36,7 +36,10 @@ public class ProductServiceImpl implements ProductService{
         productDao.delete(product);
     }
 
-    
+    @Override
+    public List<Product> findByProductIsActive(boolean isActive) {
+        return productDao.findByProductIsActive(isActive);
+    }
 
-    
+
 }

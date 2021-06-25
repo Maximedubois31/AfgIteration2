@@ -3,7 +3,6 @@ package fr.afg.iteration1.controller;
 import fr.afg.iteration1.entity.Product;
 import fr.afg.iteration1.entity.ProductType;
 import fr.afg.iteration1.service.CompanyService;
-import fr.afg.iteration1.service.PriceService;
 import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.ProductTypeService;
 import lombok.NoArgsConstructor;
@@ -11,16 +10,12 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -37,9 +32,6 @@ public class ProductController {
 
     @Autowired
     CompanyService companyService;
-
-    @Autowired
-    PriceService priceService;
 
     @GetMapping("/products")
     public String listProducts(Model model) {
@@ -78,7 +70,7 @@ public class ProductController {
    public String productDelete(Model model, @RequestParam String id) {
 
 
-        priceService.deleteByProductId(Long.parseLong(id));
+        //priceService.deleteByProductId(Long.parseLong(id));
         productService.deleteProduct(productService.findById(Long.parseLong(id)));
 
         return "redirect:/products";

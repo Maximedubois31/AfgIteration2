@@ -52,6 +52,14 @@
             <input type="number" class="form-control" id="moq" th:field="*{moq}">
         </div>
         <div class="mb-3">
+            <label for="lowPrice" class="form-label">Low Price</label>
+            <input type="number" class="form-control" id="lowPrice" th:field="*{lowPrice}">
+        </div>
+        <div class="mb-3">
+            <label for="highPrice" class="form-label">High Price</label>
+            <input type="number" class="form-control" id="highPrice" th:field="*{highPrice}">
+        </div>
+        <div class="mb-3">
             <label for="productType" class="form-label">Categories</label>
             <select class="form-select" aria-label="Default select example" th:field="*{productType}">
                 <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.productType}">

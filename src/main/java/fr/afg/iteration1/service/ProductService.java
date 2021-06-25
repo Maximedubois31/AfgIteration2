@@ -11,4 +11,5 @@ public interface ProductService {
     List<Product> getAllProduct();
     Product findById(Long id);
 	void deleteProduct(Product product);
+    List<Product> findByProductIsActive(boolean isActive);
 }

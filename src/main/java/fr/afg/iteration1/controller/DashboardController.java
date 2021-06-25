@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import fr.afg.iteration1.service.PriceService;
 import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.ProductTypeService;
 
@@ -15,9 +14,6 @@ public class DashboardController {
 	
 	@Autowired
 	ProductService productService;
-
-	@Autowired
-	PriceService priceService;
 
 	@Autowired
 	ProductTypeService productTypeService;
@@ -31,7 +27,6 @@ public class DashboardController {
 	@GetMapping("/cruduser")
 	public String crudUser(Model model) {
 		return null;
-		
 	}
 	
 	@GetMapping("/crudProduct")

@@ -27,6 +27,8 @@
 						<th>Origin</th>
 						<th>Description</th>
 						<th>Categorie</th>
+						<th>Low price</th>
+						<th>High price</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -39,6 +41,8 @@
 						<td style='text-align:center;vertical-align:middle' th:text="${product.origin}"></td>
 						<td style='text-align:center;vertical-align:middle' th:text="${product.description}"></td>
 						<td style='text-align:center;vertical-align:middle' th:text="${product.productType.productType}"></td>
+						<td style='text-align:center;vertical-align:middle' th:text="${product.lowPrice}"></td>
+						<td style='text-align:center;vertical-align:middle' th:text="${product.highPrice}"></td>
 						<td class="text-center">
 							<a th:href="@{/products/details(id=${product.id})}" class="btn btn-sm btn-info" style="margin: 10px">Details</a>
 							<a th:href="@{/products/edit(id=${product.id})}" class="btn btn-sm btn-warning">Modifier</a>

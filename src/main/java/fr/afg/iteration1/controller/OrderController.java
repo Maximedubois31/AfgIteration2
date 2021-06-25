@@ -16,7 +16,6 @@ import fr.afg.iteration1.entity.CommandLine;
 import fr.afg.iteration1.entity.Filtre;
 import fr.afg.iteration1.entity.PurchaseOrder;
 import fr.afg.iteration1.entity.User;
-import fr.afg.iteration1.service.PriceService;
 import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.ProductTypeService;
 import fr.afg.iteration1.service.PurchaseOrderService;
@@ -29,9 +28,6 @@ public class OrderController {
 
 	@Autowired
 	ProductService productService;
-
-	@Autowired
-	PriceService priceService;
 
 	@Autowired
 	ProductTypeService productTypeService;

@@ -11,10 +11,8 @@ import fr.afg.iteration1.entity.*;
 import fr.afg.iteration1.service.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
-import fr.afg.iteration1.service.PriceService;
 import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.UserService;
 
@@ -28,9 +26,6 @@ public class InitDataSet {
 	UserService userService;
 	@Autowired
 	PurchaseOrderService purchaseOrderService;
-	@Autowired
-	PriceService priceService;
-	
 
 	@Autowired
 	ProductService productService;

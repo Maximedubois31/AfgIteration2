@@ -33,6 +33,9 @@ public class Product implements Serializable{
     @Column(length=500)
     private String description;
     private Float moq;
+    private Boolean productIsActive;
+    private Float lowPrice;
+    private Float highPrice;
     
     
    @ManyToMany(cascade = CascadeType.ALL)
@@ -41,11 +44,7 @@ public class Product implements Serializable{
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name ="ingredient_id")
     )
-    private Set<Ingredient> ingredients=new HashSet<Ingredient>(); 
-   
-    //Vérifier le mapping quand on intègre le client
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Price> prices;
+    private Set<Ingredient> ingredients=new HashSet<Ingredient>();
     
     @ManyToOne()
     @JoinColumn(referencedColumnName = "id")
@@ -58,7 +57,7 @@ public class Product implements Serializable{
     @JoinColumn(referencedColumnName = "id")
     private Company supplier;
 
-    public Product(String name, String ref, String brand, String imageUrl, String origin, String quantityUnity, String description, List<Price> prices, ProductType productType) {
+    public Product(String name, String ref, String brand, String imageUrl, String origin, String quantityUnity, String description, ProductType productType) {
         this.name = name;
         this.ref = ref;
         this.brand = brand;
@@ -66,7 +65,6 @@ public class Product implements Serializable{
         this.origin = origin;
         this.quantityUnity = quantityUnity;
         this.description = description;
-        this.prices = prices;
         this.productType = productType;
     }
 
