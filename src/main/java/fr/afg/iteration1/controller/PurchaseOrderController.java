@@ -71,8 +71,6 @@ public class PurchaseOrderController {
 	@PostMapping("modifCommandLine")
 	public String modifCommandLine(HttpSession session, Long productId, Float desiredQuantity) {
 		PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
-		System.out.println("desiredQuantity" + desiredQuantity);
-		System.out.println("productId" + productId);
 		CommandLine lineToDelete = new CommandLine();
 		CommandLine lineToUpdate = new CommandLine();
 		for (CommandLine line: purchaseOrder.getLines()) {

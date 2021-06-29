@@ -30,7 +30,6 @@
 							<th>Client</th>
 							<th>Société</th>
 							<th>Date livraison</th>
-							<!--  <th>Entreprise</th> -->
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -41,16 +40,8 @@
 							<td th:text="${order.creator.firstName +'   '+ order.creator.lastName}"></td>
 							<td th:text="${order.creator.company.companyName}"></td>
 							<td th:text="${order.deliveryDate}"></td>
-
-							<!-- <td th:text="${user.company.companyName}"></td> -->
-
 							<td class="text-center"><a th:href="@{/to-orderpreparator(idPo=${order.id})}"
-								class="btn btn-sm btn-primary">Visualiser commande</a> 
-<!-- 								<form action="#" th:action="@{/to-orderpreparator}" -->
-<!-- 									th:object="${order}" method="POST">					 -->
-<!-- 									<input type="hidden" th:value="${id}" id="order" name="order"> -->
-<!-- 									<button type="submit" class="btn btn-success">Préparer</button> -->
-<!-- 									</form> -->
+								class="btn btn-sm btn-primary">Visualiser commande</a>
 							</td>
 						</tr>
 					</tbody>

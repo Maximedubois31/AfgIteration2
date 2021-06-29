@@ -39,13 +39,11 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public AddressType saveAddressType(AddressType addressType) {
-		// TODO Auto-generated method stub
 		return addressTypeDao.save(addressType);
 	}
 
 	@Override
 	public Address saveAddress(Address address) {
-		// TODO Auto-generated method stub
 		return addressDao.save(address);
 	}
 

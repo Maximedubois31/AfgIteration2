@@ -41,13 +41,11 @@ public class PurchaseOrderServiceImpl implements  PurchaseOrderService{
 
 	@Override
 	public List<PurchaseOrder> getAllOrderes() {
-		// TODO Auto-generated method stub
 		return purchaseOrderDao.findAll();
 	}
 
 	@Override
 	public PurchaseOrder getPoById(Long id) {
-		// TODO Auto-generated method stub
 		return purchaseOrderDao.getById(id);
 	}
 
