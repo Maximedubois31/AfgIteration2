@@ -32,7 +32,7 @@
                         <tr th:each="line : ${order.lines}">
                             <td th:text="${line.product.name}" style='vertical-align:middle'></td>
                             <td th:text="${line.desiredQuantity}" style='vertical-align:middle'></td>
-                            <td th:text="${line.product.moq}" style='vertical-align:middle'></td>
+                            <td th:text="${line.product.moq}+${line.product.quantityUnity}" style='vertical-align:middle'></td>
                             <td>
                                 <form action="#" th:action=@{/updateQuantity} method="POST">
                                     <input th:value="${line.orderedQuantity}" id="orderedQuantity"
@@ -54,9 +54,9 @@
                 </div>
                 <div class="col-lg-1">
                     Total :
+                    <p th:text=${total+'€'}></p>
                 </div>
                 <div class="col-lg-1">
-                    <p th:text=${total+'€'}></p>
                 </div>
             </div>
         </div>

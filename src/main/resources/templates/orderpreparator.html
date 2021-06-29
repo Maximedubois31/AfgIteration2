@@ -34,7 +34,7 @@
                     <tr th:each="line : ${order.lines}">
                         <td th:text="${line.product.name}"></td>
                         <td th:text="${line.desiredQuantity}"></td>
-                        <td th:text="${line.product.moq}"></td>
+                        <td th:text="${line.product.moq}+${line.product.quantityUnity}"></td>
                     </tr>
 
 

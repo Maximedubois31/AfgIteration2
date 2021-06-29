@@ -2,9 +2,11 @@ package fr.afg.iteration1.controller;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpSession;
 
+import fr.afg.iteration1.service.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -23,11 +25,6 @@ import fr.afg.iteration1.entity.CommandLine;
 import fr.afg.iteration1.entity.Filtre;
 import fr.afg.iteration1.entity.PurchaseOrder;
 import fr.afg.iteration1.entity.User;
-import fr.afg.iteration1.service.ProductService;
-import fr.afg.iteration1.service.ProductTypeService;
-import fr.afg.iteration1.service.PurchaseOrderService;
-import fr.afg.iteration1.service.Search;
-import fr.afg.iteration1.service.UserService;
 
 @SessionAttributes(value = {"order"})
 @Controller
@@ -116,14 +113,14 @@ public class OrderController {
         //Remove space from company name
         String[] companyNameWithoutSpace = order.getCreator().getCompany().getCompanyName().split(" ");
         String companyName = "";
-        for(String string : companyNameWithoutSpace) {
+        for (String string : companyNameWithoutSpace) {
             companyName += string;
         }
 
         String excelFilePath = "C:\\Users\\duboi\\OneDrive\\Bureau\\" + companyName + ".xls";
         File file = new File(excelFilePath);
         //Créer un fichier excel si il n'y en a pas pour la company
-        if(!file.exists()) {
+        if (!file.exists()) {
             HSSFWorkbook wb = new HSSFWorkbook();
             OutputStream outputStream = new FileOutputStream(excelFilePath);
             wb.write(outputStream);
@@ -134,8 +131,12 @@ public class OrderController {
 
         FileInputStream inputStream = new FileInputStream(file);
         HSSFWorkbook workbook = new HSSFWorkbook(inputStream);
-
-        HSSFSheet sheet = workbook.createSheet("Commande n°" + order.getId());
+        HSSFSheet sheet;
+        if (workbook.getSheetIndex("Commande n°" + order.getId()) == -1) {
+            sheet = workbook.createSheet("Commande n°" + order.getId());
+        } else {
+            sheet = workbook.getSheet("Commande n°" + order.getId());
+        }
 
         int rowCount = 0;
         Row rowHeader = sheet.createRow(rowCount);
@@ -162,7 +163,7 @@ public class OrderController {
             Cell cell2 = rowByProduct.createCell(++cellCount);
             cell2.setCellValue(line.getOrderedQuantity());
             Cell cell3 = rowByProduct.createCell(++cellCount);
-            cell3.setCellValue(line.getProduct().getMoq());
+            cell3.setCellValue(line.getProduct().getMoq() + " " + line.getProduct().getQuantityUnity());
             Cell cell4 = rowByProduct.createCell(++cellCount);
             cell4.setCellValue(line.getActivePrice() + "€ " + line.getProduct().getQuantityUnity());
             total += line.getActivePrice();
@@ -176,9 +177,26 @@ public class OrderController {
 
         inputStream.close();
         FileOutputStream outputStream = new FileOutputStream(excelFilePath);
+        autoSizeColumns(workbook);
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();
         return "redirect:orderes";
+    }
+
+    public void autoSizeColumns(Workbook workbook) {
+        int numberOfSheets = workbook.getNumberOfSheets();
+        for (int i = 0; i < numberOfSheets; i++) {
+            Sheet sheet = workbook.getSheetAt(i);
+            if (sheet.getPhysicalNumberOfRows() > 0) {
+                Row row = sheet.getRow(sheet.getFirstRowNum());
+                Iterator<Cell> cellIterator = row.cellIterator();
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    int columnIndex = cell.getColumnIndex();
+                    sheet.autoSizeColumn(columnIndex);
+                }
+            }
+        }
     }
 }
