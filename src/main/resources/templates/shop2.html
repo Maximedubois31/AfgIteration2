@@ -58,14 +58,12 @@
 								<p class="card-text"
 									th:text="${product.lowPrice +' EUR/'+ product.quantityUnity}"></p>
 
-
 							</div>
 
 							<!-- Button trigger modal -->
 							<button type="button" class="btn btn-info mb-2"
 								data-bs-toggle="modal" th:data-bs-target="${'#id'+ product.id}"
 								style="margin-top: 10px">Détails produit</button>
-
 							<!-- Modal -->
 							<div class="modal fade" th:id="${'id'+ product.id}" tabindex="-1"
 								aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,38 +101,44 @@
 								</div>
 							</div>
 
-							<!-- Advice Button trigger modal -->
-							<button type="button" class="btn btn-primary"
-								data-bs-toggle="modal" data-bs-target="#adviceModal"  th:attr="onclick='doAdvices(\'' + ${product.name}+  '\');'">
-								Conseils Pop up</button>
 
-							<!-- 		Modal Conseils -->
-							<div class="modal fade" id="adviceModal" tabindex="-1"
-								aria-labelledby="adviceModalLabel" aria-hidden="true">
+
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-info mb-2"
+								data-bs-toggle="modal" th:data-bs-target="${'#id2'+ product.id}"
+								style="margin-top: 10px">Conseils Pop up</button>
+							<!-- Modal -->
+							<div class="modal fade" th:id="${'id2'+ product.id}"
+								tabindex="-1" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
 								<div class="modal-dialog modal-dialog-scrollable">
 									<div class="modal-content">
 										<div class="modal-header">
-
+											<h5 class="modal-title" id="exampleModalLabel"
+												th:text="${product.name}"></h5>
 											<button type="button" class="btn-close"
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
 											<div class="card-body">
-												<input type="hidden" value="roquefort"
-													id="txtCheeseSelected" />
-
-												<table class="table">
-													<thead>
-														<tr>
-															<th scope="col">#</th>
-															<th scope="col">Vin(s) conseillé(s)</th>
-															<th scope="col">description</th>
-														</tr>
-													</thead>
-													<tbody id="data">
-													</tbody>
-												</table>
-
+												fromage : <input type="text" value="roquefort"
+													id="txtCheeseSelected" /> <input type="button"
+													value="Que boire ?" onclick="doAdvices()" />
+												<div>
+													<table class="table">
+														<thead>
+															<tr>
+																<th scope="col">#</th>
+																<th scope="col">Fromage</th>
+																<th scope="col">Type de fromage</th>
+																<th scope="col">Vin(s) conseillé(s)</th>
+																<th scope="col">description</th>
+															</tr>
+														</thead>
+														<tbody id="data">
+														</tbody>
+													</table>
+												</div>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -144,7 +148,12 @@
 									</div>
 								</div>
 							</div>
-							<!-- 	Fin	Modal Conseils -->
+
+
+							<form action="#" th:action="@{/advices}">
+								<button type="submit" class="btn btn-info"
+									style="margin-top: 10px">Conseils vente</button>
+							</form>
 
 
 							<form action="#" th:action="@{/addToPurchaseOrder}"
@@ -163,7 +172,21 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="modal" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Warning</h4>
+					</div>
+					
+					<div class="modal-body">
+					</div>
+					
+					<div class="modal-footer">
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src="js/my_ajax_util.js"></script>
 	<script src="js/advices-ajax.js"></script>

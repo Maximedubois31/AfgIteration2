@@ -98,5 +98,13 @@ public class ShopController {
 
 		return "redirect:shop";
 	}
+	
+	@GetMapping("/advices")
+	public String redirectAdvices() {
+
+		
+
+		return "appelajaxadvices";
+	}
 
 }
