@@ -35,13 +35,31 @@ public class ExcelServiceImpl implements ExcelService {
                                                 .getCompanyName()
                                                 .split(" ");
 
-        StringBuffer buf = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < companyNameWithoutSpace.length; ++i) {
-            buf.append(companyNameWithoutSpace[i]);
+            builder.append(companyNameWithoutSpace[i]);
         }
-        String companyName = buf.toString();
+        String companyName = builder.toString();
+        String windowsPath = "C:\\AFG";
+        String linuxPath = "/afg";
+        String actualPathToAfG = "";
+        String SE = System.getProperty("os.name").toLowerCase();
 
-        String excelFilePath = "C:\\Users\\duboi\\OneDrive\\Bureau\\" + companyName + ".xls";
+        if (SE.indexOf("win") >= 0) {
+            actualPathToAfG = windowsPath;
+            File dossier = new File(actualPathToAfG);
+            if(!dossier.exists()){
+                dossier.mkdir();
+            }
+        } else if (SE.indexOf("nux") >= 0) {
+            actualPathToAfG = linuxPath;
+            File dossier = new File(actualPathToAfG);
+            if(!dossier.exists()){
+                dossier.mkdir();
+            }
+        }
+
+        String excelFilePath = "C:\\AFG\\" + companyName + ".xls";
         File file = new File(excelFilePath);
         //Créer un fichier excel si il n'y en a pas pour la company
         if (!file.exists()) {
@@ -143,9 +161,15 @@ public class ExcelServiceImpl implements ExcelService {
         } finally {
 
             try {
-                inputStream.close();
-                workbook.close();
-                outputStream.close();
+                if(inputStream != null) {
+                    inputStream.close();
+                }
+                if(workbook != null) {
+                    workbook.close();
+                }
+                if(outputStream != null) {
+                    outputStream.close();
+                }
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }

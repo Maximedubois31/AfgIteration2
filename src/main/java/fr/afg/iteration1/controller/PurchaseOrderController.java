@@ -107,17 +107,13 @@ public class PurchaseOrderController {
     @PostMapping("modifCommandLine")
     public String modifCommandLine(HttpSession session, Long productId, Float desiredQuantity) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
-        CommandLine lineToDelete = new CommandLine();
-        CommandLine lineToUpdate = new CommandLine();
+        int index = 0;
         for (CommandLine line : purchaseOrder.getLines()) {
             if (line.getProduct().getId().equals(productId)) {
-                lineToDelete = line;
-                lineToUpdate = line;
-                lineToUpdate.setDesiredQuantity(desiredQuantity);
+                purchaseOrder.getLines().get(index).setDesiredQuantity(desiredQuantity);
             }
+            index++;
         }
-        purchaseOrder.getLines().remove(lineToDelete);
-        purchaseOrder.getLines().add(lineToUpdate);
         session.setAttribute("purchaseOrder", purchaseOrder);
         return "redirect:purchaseorder";
     }

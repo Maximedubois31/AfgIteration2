@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collections;
 
 /**
  * The type Order controller.
@@ -130,18 +131,13 @@ public class OrderController {
                                         Model model) {
 
         PurchaseOrder order = (PurchaseOrder) session.getAttribute("order");
-        CommandLine lineToDelete = new CommandLine();
-        CommandLine lineToUpdate = new CommandLine();
+        int index = 0;
         for (CommandLine line : order.getLines()) {
             if (line.getProduct().getId().equals(productId)) {
-                lineToDelete = line;
-                lineToUpdate = line;
-                lineToUpdate.setOrderedQuantity(orderedQuantity);
+                order.getLines().get(index).setOrderedQuantity(orderedQuantity);
             }
+            index++;
         }
-
-        order.getLines().remove(lineToDelete);
-        order.getLines().add(lineToUpdate);
 
         session.setAttribute("order", order);
         model.addAttribute("order", order);
