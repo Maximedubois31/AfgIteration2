@@ -6,7 +6,11 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
-import fr.afg.iteration1.entity.*;
+import fr.afg.iteration1.entity.CommandLine;
+import fr.afg.iteration1.entity.Filtre;
+import fr.afg.iteration1.entity.Product;
+import fr.afg.iteration1.entity.ProductType;
+import fr.afg.iteration1.entity.PurchaseOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,77 +27,77 @@ import fr.afg.iteration1.service.UserService;
 @Controller
 public class ShopController {
 
-	@Autowired
-	ProductService productService;
+    @Autowired
+    ProductService productService;
 
-	@Autowired
-	ProductTypeService productTypeService;
-	
-	@Autowired
-	PurchaseOrderService purchaseOrderService;
-	
-	@Autowired
-	UserService userService;
+    @Autowired
+    ProductTypeService productTypeService;
 
-	@GetMapping("/shop")
-	public String listProducts(Model model) {
+    @Autowired
+    PurchaseOrderService purchaseOrderService;
 
-		model.addAttribute("newSearch", new Search());
-		model.addAttribute("types", productTypeService.getAllProductType());
-		model.addAttribute("filtre",new Filtre());
-		model.addAttribute("commandLine", new CommandLine());
-		model.addAttribute("products", productService.findByProductIsActive(true));
+    @Autowired
+    UserService userService;
 
-		return "shop";
-	}
+    @GetMapping("/shop")
+    public String listProducts(Model model) {
 
-	@PostMapping("/shop")
-	public String postListProducts(Model model, @ModelAttribute("newSearch") Search search, @ModelAttribute ("filtre")Filtre filtre) {
+        model.addAttribute("newSearch", new Search());
+        model.addAttribute("types", productTypeService.getAllProductType());
+        model.addAttribute("filtre", new Filtre());
+        model.addAttribute("commandLine", new CommandLine());
+        model.addAttribute("products", productService.findByProductIsActive(true));
 
-		List<Product> products = productService.findByProductIsActive(true);
-		List<Product> filterProducts = new ArrayList<>();
+        return "shop";
+    }
 
-		if (search.getSearchText() != null) {
-			products = search.searchForName(products);
-		}
+    @PostMapping("/shop")
+    public String postListProducts(Model model, @ModelAttribute("newSearch") Search search, @ModelAttribute("filtre") Filtre filtre) {
 
-		if (filtre.getFiltres() != null) {
-			for (ProductType type : filtre.getFiltres()) {
+        List<Product> products = productService.findByProductIsActive(true);
+        List<Product> filterProducts = new ArrayList<>();
 
-				filterProducts.addAll(products
-						.stream()
-						.filter(c -> c.getProductType() == type)
-						.collect(Collectors.toList())
-				);
-			}
-		} else {
-			filterProducts = products;
-		}
+        if (search.getSearchText() != null) {
+            products = search.searchForName(products);
+        }
 
-		model.addAttribute("types", productTypeService.getAllProductType());
-		model.addAttribute("products", filterProducts);
-		model.addAttribute("filtre",filtre);
-		model.addAttribute("commandLine", new CommandLine());
+        if (filtre.getFiltres() != null) {
+            for (ProductType type : filtre.getFiltres()) {
 
-		return "shop";
-	}
-	
-	@PostMapping("/addToPurchaseOrder")
-	public String addToPurchaseOrder(Model model, @ModelAttribute("commandLine") CommandLine commandLine, HttpSession session) {
+                filterProducts.addAll(products
+                        .stream()
+                        .filter(c -> c.getProductType() == type)
+                        .collect(Collectors.toList())
+                );
+            }
+        } else {
+            filterProducts = products;
+        }
 
-		PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
-		for (CommandLine line: purchaseOrder.getLines()) {
-			if(line.getProduct().getId().equals(commandLine.getProduct().getId())) {
-				line.setDesiredQuantity(commandLine.getDesiredQuantity()+line.getDesiredQuantity());
-				session.setAttribute("purchaseOrder", purchaseOrder);
-				return "redirect:shop";
-			}
-		}
-		commandLine.setActivePrice(commandLine.getProduct().getLowPrice());
-		purchaseOrderService.addCommandLine(purchaseOrder, commandLine);
-		session.setAttribute("purchaseOrder", purchaseOrder);
+        model.addAttribute("types", productTypeService.getAllProductType());
+        model.addAttribute("products", filterProducts);
+        model.addAttribute("filtre", filtre);
+        model.addAttribute("commandLine", new CommandLine());
 
-		return "redirect:shop";
-	}
+        return "shop";
+    }
+
+    @PostMapping("/addToPurchaseOrder")
+    public String addToPurchaseOrder(Model model, @ModelAttribute("commandLine") CommandLine commandLine, HttpSession session) {
+
+        PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
+        for (CommandLine line : purchaseOrder.getLines()) {
+            if (line.getProduct().getId().equals(commandLine.getProduct().getId())) {
+                line.setDesiredQuantity(commandLine.getDesiredQuantity() + line.getDesiredQuantity());
+                session.setAttribute("purchaseOrder", purchaseOrder);
+                return "redirect:shop";
+            }
+        }
+        commandLine.setActivePrice(commandLine.getProduct().getLowPrice());
+        purchaseOrderService.addCommandLine(purchaseOrder, commandLine);
+        session.setAttribute("purchaseOrder", purchaseOrder);
+
+        return "redirect:shop";
+    }
 
 }

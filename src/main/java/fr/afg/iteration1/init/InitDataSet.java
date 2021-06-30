@@ -7,7 +7,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
-import fr.afg.iteration1.entity.*;
+import fr.afg.iteration1.entity.CommandLine;
+import fr.afg.iteration1.entity.Company;
+import fr.afg.iteration1.entity.Product;
+import fr.afg.iteration1.entity.PurchaseOrder;
+import fr.afg.iteration1.entity.User;
 import fr.afg.iteration1.service.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -38,8 +42,6 @@ public class InitDataSet {
         company1.setId(1L);
         Company company2 = new Company();
         company2.setId(3L);
-        Company company3 = new Company();
-        company3.setId(3L);
 
         User userTest = new User();
         userTest.setEmail("customer");
@@ -112,7 +114,7 @@ public class InitDataSet {
         CommandLine commandLine3 = new CommandLine();
         commandLine3.setDesiredQuantity(33f);
         commandLine3.setProduct(product3);
-		commandLine3.setActivePrice(40f);
+        commandLine3.setActivePrice(40f);
 
         CommandLine commandLine4 = new CommandLine();
         commandLine4.setDesiredQuantity(44f);

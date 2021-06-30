@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class PurchaseOrderServiceImpl implements  PurchaseOrderService{
+public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
     @Autowired
     private PurchaseOrderDao purchaseOrderDao;
@@ -22,7 +22,9 @@ public class PurchaseOrderServiceImpl implements  PurchaseOrderService{
 
     @Override
     public PurchaseOrder savePurchaseOrder(PurchaseOrder purchaseOrder) {
-        for (CommandLine line: purchaseOrder.getLines()) {commandLineDao.save(line); }
+        for (CommandLine line : purchaseOrder.getLines()) {
+            commandLineDao.save(line);
+        }
         return purchaseOrderDao.save(purchaseOrder);
     }
 
@@ -39,18 +41,15 @@ public class PurchaseOrderServiceImpl implements  PurchaseOrderService{
         return purchaseOrder;
     }
 
-	@Override
-	public List<PurchaseOrder> getAllOrderes() {
-		return purchaseOrderDao.findAll();
-	}
+    @Override
+    public List<PurchaseOrder> getAllOrderes() {
+        return purchaseOrderDao.findAll();
+    }
 
-	@Override
-	public PurchaseOrder getPoById(Long id) {
-		return purchaseOrderDao.getById(id);
-	}
-
-
-
+    @Override
+    public PurchaseOrder getPoById(Long id) {
+        return purchaseOrderDao.getById(id);
+    }
 
 
 }

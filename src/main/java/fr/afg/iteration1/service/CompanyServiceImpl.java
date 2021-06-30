@@ -17,13 +17,13 @@ import fr.afg.iteration1.entity.Company;
 @Service
 @Transactional
 public class CompanyServiceImpl implements CompanyService {
-    
+
     @Autowired
     private CompanyDao companyDao;
-    
+
     @Autowired
     private AddressTypeDao addressTypeDao;
-    
+
     @Autowired
     private AddressDao addressDao;
 
@@ -37,16 +37,15 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDao.save(company);
     }
 
-	@Override
-	public AddressType saveAddressType(AddressType addressType) {
-		return addressTypeDao.save(addressType);
-	}
+    @Override
+    public AddressType saveAddressType(AddressType addressType) {
+        return addressTypeDao.save(addressType);
+    }
 
-	@Override
-	public Address saveAddress(Address address) {
-		return addressDao.save(address);
-	}
+    @Override
+    public Address saveAddress(Address address) {
+        return addressDao.save(address);
+    }
 
 
-    
 }

@@ -6,10 +6,8 @@ import fr.afg.iteration1.service.CompanyService;
 import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.ProductTypeService;
 import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @NoArgsConstructor
-@SessionAttributes(value= {"idUser"})
+@SessionAttributes(value = {"idUser"})
 public class ProductController {
 
     @Autowired
@@ -39,7 +37,7 @@ public class ProductController {
         model.addAttribute("products", productService.getAllProduct());
         return "products";
     }
-    
+
     @GetMapping("/products/edit")
     public String productEdit(Model model, @RequestParam String id) {
 
@@ -58,31 +56,31 @@ public class ProductController {
         return "editProduct";
     }
 
-   @PostMapping("/products/edit")
-   public String postProductEdit(Model model, @ModelAttribute("product") Product product) {
-                       
-            productService.saveProduct(product);
-        
-            return "redirect:/products";
-   } 
+    @PostMapping("/products/edit")
+    public String postProductEdit(Model model, @ModelAttribute("product") Product product) {
 
-   @GetMapping("/products/delete")
-   public String productDelete(Model model, @RequestParam String id) {
+        productService.saveProduct(product);
+
+        return "redirect:/products";
+    }
+
+    @GetMapping("/products/delete")
+    public String productDelete(Model model, @RequestParam String id) {
 
 
         //priceService.deleteByProductId(Long.parseLong(id));
         productService.deleteProduct(productService.findById(Long.parseLong(id)));
 
         return "redirect:/products";
-   }
+    }
 
-   @GetMapping("/products/details")
-   public String productDetails(Model model, @RequestParam String id) {
-       
-       model.addAttribute("product",productService.findById(Long.parseLong(id)));
+    @GetMapping("/products/details")
+    public String productDetails(Model model, @RequestParam String id) {
+
+        model.addAttribute("product", productService.findById(Long.parseLong(id)));
 
         return "detailsProduct";
-   }
-   
-   
+    }
+
+
 }
