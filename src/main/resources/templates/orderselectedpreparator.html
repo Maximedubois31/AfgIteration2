@@ -75,10 +75,6 @@
         </div>
     </div>
     <button type="button" th:onclick="generatePDF()">PDF</button>
-    <form action="#" th:action="@{/createExcel}" method="POST">
-        <button type="submit" class="btn btn-success" style="margin-block: 10px">Excel
-        </button>
-    </form>
     <script type="text/javascript" th:src="@{/js/html2pdf.bundle.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/pdf.js}"/>
 </div>
