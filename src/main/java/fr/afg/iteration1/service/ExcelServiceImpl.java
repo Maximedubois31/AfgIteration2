@@ -1,7 +1,9 @@
 package fr.afg.iteration1.service;
 
+import fr.afg.iteration1.delegate.TvaDelegateImpl;
 import fr.afg.iteration1.entity.CommandLine;
 import fr.afg.iteration1.entity.PurchaseOrder;
+import fr.afg.iteration1.ui.response.CalculeTvaResponse;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -9,6 +11,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +20,9 @@ import java.util.Iterator;
 
 @Service
 public class ExcelServiceImpl implements ExcelService {
+
+    @Autowired
+    private TvaDelegateImpl tvaDeleg;
 
     @Override
     public void creerExcel(HttpSession session, PurchaseOrder order) throws IOException, InvalidFormatException {
@@ -81,8 +87,11 @@ public class ExcelServiceImpl implements ExcelService {
             cellMoq.setCellValue("Moq");
             Cell cellActivePrice = rowHeader.createCell(++cellCount);
             cellActivePrice.setCellValue("Prix unité");
+            Cell cellPriceTva = rowHeader.createCell(++cellCount);
+            cellPriceTva.setCellValue("TTC");
 
             float ht = 0;
+            float ttc = 0;
 
             //Body cell
             for (CommandLine line : order.getLines()) {
@@ -100,12 +109,28 @@ public class ExcelServiceImpl implements ExcelService {
                         + "€ " + line.getProduct().getQuantityUnity());
                 ht += line.getActivePrice();
                 //todo TVA
+                Cell cell5 = rowByProduct.createCell(++cellCount);
+                Double activePrice = (double) line.getActivePrice();
+                CalculeTvaResponse response = tvaDeleg.getCalculeTva(activePrice, line.getProduct()
+                                                                                        .getProductType()
+                                                                                        .getVatType()
+                                                                                        .getId());
+                cell5.setCellValue(response.getFinalPrice() + "€ " + line.getProduct().getQuantityUnity());
+                ttc += response.getFinalPrice();
             }
-            Row rowTotal = sheet.createRow(++rowCount);
-            Cell cellTotalTitre = rowTotal.createCell(++cellCount);
+            //Prix HT
+            Row rowHT = sheet.createRow(++rowCount);
+            Cell cellTotalTitre = rowHT.createCell(++cellCount);
             cellTotalTitre.setCellValue("Prix HT");
-            Cell cellTotal = rowTotal.createCell(++cellCount);
+            Cell cellTotal = rowHT.createCell(++cellCount);
             cellTotal.setCellValue(ht + "€");
+
+            //Prix TTC
+            Row rowTTC = sheet.createRow(++rowCount);
+            Cell cellTTCTitre = rowTTC.createCell(--cellCount);
+            cellTTCTitre.setCellValue("Prix TTC");
+            Cell cellTTC = rowTTC.createCell(++cellCount);
+            cellTTC.setCellValue(ttc + "€");
 
             outputStream = new FileOutputStream(excelFilePath);
             autoSizeColumns(workbook);

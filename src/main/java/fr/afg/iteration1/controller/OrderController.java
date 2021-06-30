@@ -1,24 +1,12 @@
 package fr.afg.iteration1.controller;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.time.LocalDate;
-import java.util.Iterator;
-
-import javax.servlet.http.HttpSession;
-
+import fr.afg.iteration1.entity.CommandLine;
+import fr.afg.iteration1.entity.Filtre;
+import fr.afg.iteration1.entity.PurchaseOrder;
+import fr.afg.iteration1.entity.User;
 import fr.afg.iteration1.service.*;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import fr.afg.iteration1.entity.CommandLine;
-import fr.afg.iteration1.entity.Filtre;
-import fr.afg.iteration1.entity.PurchaseOrder;
-import fr.afg.iteration1.entity.User;
+
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.time.LocalDate;
 
 @SessionAttributes(value = {"order"})
 @Controller
