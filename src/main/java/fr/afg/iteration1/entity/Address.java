@@ -14,6 +14,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Address.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,8 +35,14 @@ public class Address {
     @JoinColumn(referencedColumnName = "id")
     private AddressType address_type;
 
+    /**
+     * The Invoice addresse companies.
+     */
     @OneToMany(mappedBy = "invoiceAddress")
     Set<Company> invoiceAddresseCompanies;
+    /**
+     * The Delivery addresse companies.
+     */
     @OneToMany(mappedBy = "deliveryAddress")
     Set<Company> deliveryAddresseCompanies;
 

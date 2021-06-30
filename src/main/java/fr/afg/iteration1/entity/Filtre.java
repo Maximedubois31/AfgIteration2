@@ -4,6 +4,9 @@ import java.util.List;
 
 import lombok.Data;
 
+/**
+ * The type Filtre.
+ */
 @Data
 
 public class Filtre {

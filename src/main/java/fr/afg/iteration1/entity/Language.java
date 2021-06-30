@@ -12,6 +12,9 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/**
+ * The type Language.
+ */
 @Data
 @Entity
 @Table

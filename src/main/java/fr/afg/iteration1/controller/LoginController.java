@@ -21,27 +21,47 @@ import fr.afg.iteration1.service.PurchaseOrderService;
 import fr.afg.iteration1.service.UserService;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Login controller.
+ */
 @Controller
 @NoArgsConstructor
 @SessionAttributes(value = {"idUser", "purchaseOrder"})
 public class LoginController {
 
+    /**
+     * The Product service.
+     */
     @Autowired
     ProductService productService;
 
+    /**
+     * The User service.
+     */
     @Autowired
     UserService userService;
 
+    /**
+     * The Purchase order service.
+     */
     @Autowired
     PurchaseOrderService purchaseOrderService;
 
 
+    /**
+     * Do after login string.
+     *
+     * @param model  the model
+     * @param idUser the id user
+     * @return the string
+     */
     @PreAuthorize("hasRole('CUSTOMER') " +
                     "|| hasRole('PREPARATOR') " +
                     "|| hasRole('LOGISTIC')")
     @RequestMapping(value = "/afterlogin")
     public String doAfterLogin(Model model,
                                @RequestParam(name = "idUser", required = false) Long idUser) {
+
         model.addAttribute("products", productService.getAllProduct());
         if (idUser == null) {
             Object principal = SecurityContextHolder

@@ -14,6 +14,9 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/**
+ * The type Description.
+ */
 @Data
 @Entity
 @Table

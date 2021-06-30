@@ -7,12 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import fr.afg.iteration1.service.UserService;
 
+/**
+ * The type User controller.
+ */
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    /**
+     * List users string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/users")
     public String listUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());

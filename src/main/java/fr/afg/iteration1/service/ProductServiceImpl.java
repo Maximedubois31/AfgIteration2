@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * The type Product service.
+ */
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {

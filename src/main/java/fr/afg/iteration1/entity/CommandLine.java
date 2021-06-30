@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Command line.
+ */
 @Getter @Setter @NoArgsConstructor
 
 @Entity

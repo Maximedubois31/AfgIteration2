@@ -6,7 +6,6 @@ import fr.afg.iteration1.entity.PurchaseOrder;
 import fr.afg.iteration1.ui.response.CalculeTvaResponse;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,6 +17,9 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.Iterator;
 
+/**
+ * The type Excel service.
+ */
 @Service
 public class ExcelServiceImpl implements ExcelService {
 
@@ -25,13 +27,13 @@ public class ExcelServiceImpl implements ExcelService {
     private TvaDelegateImpl tvaDeleg;
 
     @Override
-    public void creerExcel(HttpSession session, PurchaseOrder order) throws IOException, InvalidFormatException {
+    public void creerExcel(HttpSession session, PurchaseOrder order) throws IOException {
 
         //Remove space from company name
         String[] companyNameWithoutSpace = order.getCreator()
-                .getCompany()
-                .getCompanyName()
-                .split(" ");
+                                                .getCompany()
+                                                .getCompanyName()
+                                                .split(" ");
 
         StringBuffer buf = new StringBuffer();
         for (int i = 0; i < companyNameWithoutSpace.length; ++i) {
@@ -150,6 +152,11 @@ public class ExcelServiceImpl implements ExcelService {
         }
     }
 
+    /**
+     * Auto size columns.
+     *
+     * @param workbook the workbook
+     */
     public void autoSizeColumns(Workbook workbook) {
         int numberOfSheets = workbook.getNumberOfSheets();
         for (int i = 0; i < numberOfSheets; i++) {

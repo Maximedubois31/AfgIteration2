@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The type Vat type.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,6 +34,13 @@ public class VATType {
     @OneToMany(mappedBy = "vatType", cascade = CascadeType.ALL)
     private List<ProductType> productTypes;
 
+    /**
+     * Instantiates a new Vat type.
+     *
+     * @param rate      the rate
+     * @param startDate the start date
+     * @param endDate   the end date
+     */
     public VATType(float rate, LocalDate startDate, LocalDate endDate) {
         this.rate = rate;
         this.startDate = startDate;

@@ -24,21 +24,42 @@ import fr.afg.iteration1.service.PurchaseOrderService;
 import fr.afg.iteration1.service.Search;
 import fr.afg.iteration1.service.UserService;
 
+/**
+ * The type Shop controller.
+ */
 @Controller
 public class ShopController {
 
+    /**
+     * The Product service.
+     */
     @Autowired
     ProductService productService;
 
+    /**
+     * The Product type service.
+     */
     @Autowired
     ProductTypeService productTypeService;
 
+    /**
+     * The Purchase order service.
+     */
     @Autowired
     PurchaseOrderService purchaseOrderService;
 
+    /**
+     * The User service.
+     */
     @Autowired
     UserService userService;
 
+    /**
+     * List products string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/shop")
     public String listProducts(Model model) {
 
@@ -51,8 +72,18 @@ public class ShopController {
         return "shop";
     }
 
+    /**
+     * Post list products string.
+     *
+     * @param model  the model
+     * @param search the search
+     * @param filtre the filtre
+     * @return the string
+     */
     @PostMapping("/shop")
-    public String postListProducts(Model model, @ModelAttribute("newSearch") Search search, @ModelAttribute("filtre") Filtre filtre) {
+    public String postListProducts(Model model,
+                                   @ModelAttribute("newSearch") Search search,
+                                   @ModelAttribute("filtre") Filtre filtre) {
 
         List<Product> products = productService.findByProductIsActive(true);
         List<Product> filterProducts = new ArrayList<>();
@@ -64,10 +95,9 @@ public class ShopController {
         if (filtre.getFiltres() != null) {
             for (ProductType type : filtre.getFiltres()) {
 
-                filterProducts.addAll(products
-                        .stream()
-                        .filter(c -> c.getProductType() == type)
-                        .collect(Collectors.toList())
+                filterProducts.addAll(products.stream()
+                                                .filter(c -> c.getProductType() == type)
+                                                .collect(Collectors.toList())
                 );
             }
         } else {
@@ -82,8 +112,18 @@ public class ShopController {
         return "shop";
     }
 
+    /**
+     * Add to purchase order string.
+     *
+     * @param model       the model
+     * @param commandLine the command line
+     * @param session     the session
+     * @return the string
+     */
     @PostMapping("/addToPurchaseOrder")
-    public String addToPurchaseOrder(Model model, @ModelAttribute("commandLine") CommandLine commandLine, HttpSession session) {
+    public String addToPurchaseOrder(Model model,
+                                     @ModelAttribute("commandLine") CommandLine commandLine,
+                                     HttpSession session) {
 
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         for (CommandLine line : purchaseOrder.getLines()) {

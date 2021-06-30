@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Address type.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

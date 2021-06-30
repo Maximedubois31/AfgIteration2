@@ -6,7 +6,6 @@ import fr.afg.iteration1.entity.Filtre;
 import fr.afg.iteration1.entity.PurchaseOrder;
 import fr.afg.iteration1.entity.User;
 import fr.afg.iteration1.service.*;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,25 +18,49 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * The type Order controller.
+ */
 @SessionAttributes(value = {"order"})
 @Controller
 public class OrderController {
 
+    /**
+     * The Product service.
+     */
     @Autowired
     ProductService productService;
 
+    /**
+     * The Product type service.
+     */
     @Autowired
     ProductTypeService productTypeService;
 
+    /**
+     * The Purchase order service.
+     */
     @Autowired
     PurchaseOrderService purchaseOrderService;
 
+    /**
+     * The Excel service.
+     */
     @Autowired
     ExcelService excelService;
 
+    /**
+     * The User service.
+     */
     @Autowired
     UserService userService;
 
+    /**
+     * List orderes string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/orderes")
     public String listOrderes(Model model) {
 
@@ -49,16 +72,33 @@ public class OrderController {
         return "orderes";
     }
 
+    /**
+     * Gets order.
+     *
+     * @param model the model
+     * @param idPo  the id po
+     * @return the order
+     */
     @GetMapping("/to-orderpreparator")
-    public String getOrder(Model model, @RequestParam("idPo") Long idPo) {
+    public String getOrder(Model model,
+                           @RequestParam("idPo") Long idPo) {
+
         PurchaseOrder order = purchaseOrderService.getPoById(idPo);
         model.addAttribute("order", order);
         return "orderpreparator";
     }
 
+    /**
+     * Gets selected order.
+     *
+     * @param model   the model
+     * @param session the session
+     * @return the selected order
+     */
     @GetMapping("/to-orderselectedpreparator")
     public String getSelectedOrder(Model model,
                                    HttpSession session) {
+
         PurchaseOrder order = (PurchaseOrder) session.getAttribute("order");
         model.addAttribute("order", order);
         Float total = 0f;
@@ -74,11 +114,21 @@ public class OrderController {
         return "orderselectedpreparator";
     }
 
+    /**
+     * Update ordered quantity string.
+     *
+     * @param session         the session
+     * @param productId       the product id
+     * @param orderedQuantity the ordered quantity
+     * @param model           the model
+     * @return the string
+     */
     @PostMapping("updateQuantity")
     public String updateOrderedQuantity(HttpSession session,
                                         Long productId,
                                         Float orderedQuantity,
                                         Model model) {
+
         PurchaseOrder order = (PurchaseOrder) session.getAttribute("order");
         CommandLine lineToDelete = new CommandLine();
         CommandLine lineToUpdate = new CommandLine();
@@ -98,9 +148,17 @@ public class OrderController {
         return "redirect:to-orderselectedpreparator";
     }
 
+    /**
+     * Validate selected order string.
+     *
+     * @param model   the model
+     * @param session the session
+     * @return the string
+     * @throws IOException the io exception
+     */
     @PostMapping("validateSelectedOrder")
     public String validateSelectedOrder(Model model,
-                                        HttpSession session) throws IOException, InvalidFormatException {
+                                        HttpSession session) throws IOException {
         PurchaseOrder order = (PurchaseOrder) session.getAttribute("order");
         excelService.creerExcel(session, order);
         User user = userService.getUserById((Long) session.getAttribute("idUser"));

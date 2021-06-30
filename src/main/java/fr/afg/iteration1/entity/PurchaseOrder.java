@@ -16,6 +16,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Purchase order.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
