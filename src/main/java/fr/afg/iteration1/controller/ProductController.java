@@ -40,17 +40,28 @@ public class ProductController {
         return "products";
     }
     
+    @GetMapping("/products/new")
+    public String productNew(Model model) {
+
+        Product produit = new Product();
+
+        model.addAttribute("product", produit);
+        model.addAttribute("suppliers", companyService.getAllCompany());
+        model.addAttribute("categories", productTypeService.getAllProductType());
+        return "newProduct";
+    }
+
     @GetMapping("/products/edit")
     public String productEdit(Model model, @RequestParam String id) {
 
         Product produit = productService.findById(Long.parseLong(id));
-        List<ProductType> listCategories = productTypeService.getAllProductType();
+        /* List<ProductType> listCategories = productTypeService.getAllProductType();
         List<ProductType> listNewCategories = new ArrayList<>();
         for (ProductType productType : listCategories) {
             if (!productType.equals(produit.getProductType())) {
                 listNewCategories.add(productType);
             }
-        }
+        } */
 
         model.addAttribute("product", produit);
         model.addAttribute("suppliers", companyService.getAllCompany());
