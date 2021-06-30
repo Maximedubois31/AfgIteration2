@@ -1,7 +1,6 @@
 package fr.afg.iteration1.service;
 
 import fr.afg.iteration1.entity.Product;
-import fr.afg.iteration1.entity.User;
 
 import java.util.List;
 

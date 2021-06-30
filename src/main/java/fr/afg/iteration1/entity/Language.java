@@ -16,12 +16,12 @@ import lombok.Data;
 @Entity
 @Table
 public class Language {
-		
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    
+
     @OneToMany(mappedBy = "language", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.afg.iteration1.dao.ProductTypeDao;
-import fr.afg.iteration1.entity.Product;
 import fr.afg.iteration1.entity.ProductType;
 
 @Service
@@ -17,7 +16,7 @@ public class ProductTypeserviceImpl implements ProductTypeService {
 
     @Autowired
     ProductTypeDao productTypeDao;
-    
+
     @Autowired
     ProductTypeService productTypeService;
 
@@ -31,6 +30,5 @@ public class ProductTypeserviceImpl implements ProductTypeService {
         return productTypeDao.save(productType);
     }
 
-	
 
 }

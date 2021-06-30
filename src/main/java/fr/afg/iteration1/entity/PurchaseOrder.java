@@ -1,9 +1,7 @@
 package fr.afg.iteration1.entity;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +16,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 
 @Entity
 @Table
@@ -40,20 +40,16 @@ public class PurchaseOrder {
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private User preparator;
- 
+
 
     @OneToMany(mappedBy = "purchaseOrder")
     private List<CommandLine> lines;
 
-    public PurchaseOrder(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    @Override
+    public String toString() {
+        return "PurchaseOrder [id=" + id + ", creationDate=" + creationDate + ", wantedDeliveryDate="
+                + wantedDeliveryDate + ", deliveryDate=" + deliveryDate + ", preparationDate=" + preparationDate + "]";
     }
 
-	@Override
-	public String toString() {
-		return "PurchaseOrder [id=" + id + ", creationDate=" + creationDate + ", wantedDeliveryDate="
-				+ wantedDeliveryDate + ", deliveryDate=" + deliveryDate + ", preparationDate=" + preparationDate + "]";
-	}
 
-    
 }

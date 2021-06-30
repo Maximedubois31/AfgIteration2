@@ -18,14 +18,14 @@ import lombok.Data;
 @Entity
 @Table
 public class Description {
-	
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	@Column(length = 500)
+    @Column(length = 500)
     private String description;
     private LocalDate lastModificationDate;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private Product product;

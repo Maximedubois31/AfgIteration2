@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.afg.iteration1.entity.VATType;
 
-public interface VATTypeDao extends JpaRepository<VATType, Long>{
+public interface VATTypeDao extends JpaRepository<VATType, Long> {
 
 }

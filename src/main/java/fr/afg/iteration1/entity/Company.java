@@ -39,38 +39,5 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private Set<User> users;
 
-    public Company(String companyName) {
-        this.companyName = companyName;
-    }
-
-	public Company(String companyName, Address invoiceAddress, Address deliveryAddress, String siret, String email,
-			String phone, String vatNumber, String nafApeCode) {
-		super();
-		this.companyName = companyName;
-		this.invoiceAddress = invoiceAddress;
-		this.deliveryAddress = deliveryAddress;
-		this.siret = siret;
-		this.email = email;
-		this.phone = phone;
-		this.vatNumber = vatNumber;
-		this.nafApeCode = nafApeCode;
-	}
-/*
-    public Company(String companyName, Set<Address> address, String siret, String email, String phone,
-            String vatNumber, String nafApeCode, Set<User> users) {
-        this.companyName = companyName;
-        this.address = address;
-        this.siret = siret;
-        this.email = email;
-        this.phone = phone;
-        this.vatNumber = vatNumber;
-        this.nafApeCode = nafApeCode;
-        this.users = users;
-    }
-    */
-    
-    
-
-    
 
 }

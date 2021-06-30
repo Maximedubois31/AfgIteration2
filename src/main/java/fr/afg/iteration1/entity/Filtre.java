@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 
 public class Filtre {
-	
-	private List<ProductType> filtres;
+
+    private List<ProductType> filtres;
 
 }

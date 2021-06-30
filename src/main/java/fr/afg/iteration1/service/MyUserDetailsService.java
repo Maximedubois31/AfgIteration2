@@ -21,7 +21,7 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userDao.findByEmail(email);
 
-        user.orElseThrow(() -> new UsernameNotFoundException ("Not found" + email + "or wrong password"));
+        user.orElseThrow(() -> new UsernameNotFoundException("Not found" + email + "or wrong password"));
 
         return user.map(MyUsersDetails::new).get();
     }

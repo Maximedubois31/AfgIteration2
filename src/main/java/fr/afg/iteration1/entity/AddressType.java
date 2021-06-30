@@ -25,8 +25,4 @@ public class AddressType {
     @OneToMany(mappedBy = "address_type")
     private Set<Address> adresses;
 
-    public AddressType(String name) {
-        this.name = name;
-    }
-
 }
