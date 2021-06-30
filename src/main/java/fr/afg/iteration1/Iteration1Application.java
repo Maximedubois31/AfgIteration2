@@ -27,7 +27,7 @@ public class Iteration1Application extends SpringBootServletInitializer {
         // SpringApplication.run(Iteration1Application.class, args);
         SpringApplication app = new SpringApplication(Iteration1Application.class);
         app.setAdditionalProfiles("initData");
-        ConfigurableApplicationContext context = app.run(args);
+        app.run(args);
         System.out.println("http://localhost:8093/login");
     }
 }

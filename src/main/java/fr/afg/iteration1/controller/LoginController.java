@@ -82,6 +82,10 @@ public class LoginController {
             purchaseOrder.setLines(commandLines);
             //Mettre panier en session et en bdd
             model.addAttribute("purchaseOrder", purchaseOrder);
+            if(user.getRoles().equals("ROLE_PREPARATOR")) {
+                return "redirect:orderes";
+            }
+            System.out.println(user.getRoles());
         }
 
         return "redirect:shop";

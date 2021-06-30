@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Collections;
 
 /**
  * The type Order controller.
@@ -63,7 +62,7 @@ public class OrderController {
      * @return the string
      */
     @GetMapping("/orderes")
-    public String listOrderes(Model model) {
+    public String listOrderes(final Model model) {
 
         model.addAttribute("newSearch", new Search());
         model.addAttribute("types", productTypeService.getAllProductType());
@@ -81,7 +80,7 @@ public class OrderController {
      * @return the order
      */
     @GetMapping("/to-orderpreparator")
-    public String getOrder(Model model,
+    public String getOrder(final Model model,
                            @RequestParam("idPo") Long idPo) {
 
         PurchaseOrder order = purchaseOrderService.getPoById(idPo);
@@ -97,8 +96,8 @@ public class OrderController {
      * @return the selected order
      */
     @GetMapping("/to-orderselectedpreparator")
-    public String getSelectedOrder(Model model,
-                                   HttpSession session) {
+    public String getSelectedOrder(final Model model,
+                                   final HttpSession session) {
 
         PurchaseOrder order = (PurchaseOrder) session.getAttribute("order");
         model.addAttribute("order", order);
@@ -125,10 +124,10 @@ public class OrderController {
      * @return the string
      */
     @PostMapping("updateQuantity")
-    public String updateOrderedQuantity(HttpSession session,
-                                        Long productId,
-                                        Float orderedQuantity,
-                                        Model model) {
+    public String updateOrderedQuantity(final HttpSession session,
+                                        final Long productId,
+                                        final Float orderedQuantity,
+                                        final Model model) {
 
         PurchaseOrder order = (PurchaseOrder) session.getAttribute("order");
         int index = 0;
@@ -153,8 +152,8 @@ public class OrderController {
      * @throws IOException the io exception
      */
     @PostMapping("validateSelectedOrder")
-    public String validateSelectedOrder(Model model,
-                                        HttpSession session) throws IOException {
+    public String validateSelectedOrder(final Model model,
+                                        final HttpSession session) throws IOException {
         PurchaseOrder order = (PurchaseOrder) session.getAttribute("order");
         excelService.creerExcel(session, order);
         User user = userService.getUserById((Long) session.getAttribute("idUser"));
