@@ -34,8 +34,6 @@ public class ShopController {
 	
 	@Autowired
 	UserService userService;
-	
-	
 
 	@GetMapping("/shop")
 	public String listProducts(Model model) {
@@ -86,14 +84,13 @@ public class ShopController {
 		PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
 		for (CommandLine line: purchaseOrder.getLines()) {
 			if(line.getProduct().getId().equals(commandLine.getProduct().getId())) {
-				System.out.println("pass dans if");
 				line.setDesiredQuantity(commandLine.getDesiredQuantity()+line.getDesiredQuantity());
 				session.setAttribute("purchaseOrder", purchaseOrder);
 				return "redirect:shop";
 			}
 		}
+		commandLine.setActivePrice(commandLine.getProduct().getLowPrice());
 		purchaseOrderService.addCommandLine(purchaseOrder, commandLine);
-		purchaseOrder.getLines().stream().sorted();
 		session.setAttribute("purchaseOrder", purchaseOrder);
 
 		return "redirect:shop";
