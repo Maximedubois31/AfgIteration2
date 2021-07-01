@@ -72,6 +72,22 @@ public class OrderController {
         return "orderes";
     }
 
+    @GetMapping("/my_orderes_in_progress")
+    public String listMyOrderesInProgress(final Model model, HttpSession session) {
+        Long idUser = (Long) session.getAttribute("idUser");
+        model.addAttribute("myOrderesInProgress", purchaseOrderService.getAllMyOrderesInProgress(idUser));
+
+        return "my_orderes_in_progress";
+    }
+
+    @GetMapping("/my_orderes_finished")
+    public String listMyOrderesFinished(final Model model, HttpSession session) {
+        Long idUser = (Long) session.getAttribute("idUser");
+        model.addAttribute("myOrderesFinished", purchaseOrderService.getAllMyOrderesFinished(idUser));
+
+        return "my_orderes_finished";
+    }
+
     /**
      * Gets order.
      *
