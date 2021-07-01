@@ -20,14 +20,21 @@ import lombok.Data;
 @Table
 public class Language {
 
+    /**
+     * The id of this language.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
+    /**
+     * The list of ingredients in this language.
+     */
     @OneToMany(mappedBy = "language", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
-
+    /**
+     * The list of description in this language.
+     */
     @OneToMany(mappedBy = "language", cascade = CascadeType.ALL)
     private List<Description> descriptions;
 }

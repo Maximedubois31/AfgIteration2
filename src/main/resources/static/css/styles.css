@@ -5019,6 +5019,11 @@ img.clippedsmall{
     position: relative;
     padding: 20px 0px;
 }
+.myfatvide{
+	background-color: white;
+    position: relative;
+    padding: 100px 0px;
+}
 
 .mybigfont{
 	font-size: 28px;

@@ -23,7 +23,7 @@ public class AppCtrl {
      * @return the string
      */
     @ModelAttribute("idSession")
-    public String idSession(HttpSession session) {
+    public String idSession(final HttpSession session) {
         return session.getId();
     }
 
@@ -34,7 +34,7 @@ public class AppCtrl {
      * @return the string
      */
     @RequestMapping("/to-welcome")
-    String toWelcome(Model model) {
+    String toWelcome(final Model model) {
         model.addAttribute("message", "bienvenu(e)");
         model.addAttribute("title", "welcome");
         return "welcome";
@@ -47,7 +47,7 @@ public class AppCtrl {
      * @return the string
      */
     @RequestMapping("/to-login")
-    String toLogin(Model model) {
+    String toLogin(final Model model) {
         model.addAttribute("title", "login");
         return "login";
     }
@@ -60,7 +60,7 @@ public class AppCtrl {
      * @return the string
      */
     @RequestMapping("/session-end")
-    public String finSession(Model model, HttpSession session) {
+    public String finSession(final Model model, final HttpSession session) {
         SecurityContextHolder.clearContext(); //RAZ context Spring security
         session.invalidate();
         model.addAttribute("message", "session terminée");

@@ -70,19 +70,7 @@ class Iteration1ApplicationTests {
 
 	}
 
-    /**
-     * Test delegate delete tva.
-     */
-    @Test
-	public void testDelegateDeleteTva() {
-
-		tvaDeleg.deleteTva(1L);
-		
-	}
-
-    /**
-     * Test delegate update tva.
-     */
+    
     @Test
 	public void testDelegateUpdateTva() {
 

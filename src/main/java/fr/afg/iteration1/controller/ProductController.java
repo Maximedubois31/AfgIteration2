@@ -43,7 +43,7 @@ public class ProductController {
      * @return the string
      */
     @GetMapping("/products")
-    public String listProducts(Model model) {
+    public String listProducts(final Model model) {
 
         model.addAttribute("products", productService.getAllProduct());
         return "products";
@@ -56,7 +56,7 @@ public class ProductController {
      * @return the string
      */
     @GetMapping("/products/new")
-    public String productNew(Model model) {
+    public String productNew(final Model model) {
 
         Product produit = new Product();
 
@@ -74,17 +74,9 @@ public class ProductController {
      * @return the string
      */
     @GetMapping("/products/edit")
-    public String productEdit(Model model, @RequestParam String id) {
+    public String productEdit(final Model model, @RequestParam final String id) {
 
         Product produit = productService.findById(Long.parseLong(id));
-        /* List<ProductType> listCategories = productTypeService.getAllProductType();
-        List<ProductType> listNewCategories = new ArrayList<>();
-        for (ProductType productType : listCategories) {
-            if (!productType.equals(produit.getProductType())) {
-                listNewCategories.add(productType);
-            }
-        } */
-
         model.addAttribute("product", produit);
         model.addAttribute("suppliers", companyService.getAllCompany());
         model.addAttribute("categories", productTypeService.getAllProductType());
@@ -99,7 +91,7 @@ public class ProductController {
      * @return the string
      */
     @PostMapping("/products/edit")
-    public String postProductEdit(Model model, @ModelAttribute("product") Product product) {
+    public String postProductEdit(final Model model, @ModelAttribute("product") final Product product) {
 
         productService.saveProduct(product);
 
@@ -114,7 +106,7 @@ public class ProductController {
      * @return the string
      */
     @GetMapping("/products/delete")
-    public String productDelete(Model model, @RequestParam String id) {
+    public String productDelete(final Model model, @RequestParam final String id) {
 
 
         //priceService.deleteByProductId(Long.parseLong(id));
@@ -131,7 +123,7 @@ public class ProductController {
      * @return the string
      */
     @GetMapping("/products/details")
-    public String productDetails(Model model, @RequestParam String id) {
+    public String productDetails(final Model model, @RequestParam final String id) {
 
         model.addAttribute("product", productService.findById(Long.parseLong(id)));
 

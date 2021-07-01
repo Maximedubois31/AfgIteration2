@@ -21,11 +21,11 @@ import lombok.Setter;
 @Table
 public class CommandLine {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     /**
      * The id of this CommandLine.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
      * The orderedQuantity of this CommandLine.
@@ -44,10 +44,16 @@ public class CommandLine {
      */
     private Float activePrice;
 
+    /**
+     * The product of this CommandLine.
+     */
     @ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Product product;
 
+    /**
+     * The purchaseOrder of this CommandLine.
+     */
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
 	private PurchaseOrder purchaseOrder;

@@ -23,7 +23,7 @@ public class UserController {
      * @return the string
      */
     @GetMapping("/users")
-    public String listUsers(Model model) {
+    public String listUsers(final Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }

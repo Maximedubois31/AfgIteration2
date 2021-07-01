@@ -61,7 +61,7 @@ public class ShopController {
      * @return the string
      */
     @GetMapping("/shop")
-    public String listProducts(Model model) {
+    public String listProducts(final Model model) {
 
         model.addAttribute("newSearch", new Search());
         model.addAttribute("types", productTypeService.getAllProductType());
@@ -81,9 +81,9 @@ public class ShopController {
      * @return the string
      */
     @PostMapping("/shop")
-    public String postListProducts(Model model,
-                                   @ModelAttribute("newSearch") Search search,
-                                   @ModelAttribute("filtre") Filtre filtre) {
+    public String postListProducts(final Model model,
+                                   @ModelAttribute("newSearch") final Search search,
+                                   @ModelAttribute("filtre") final Filtre filtre) {
 
         List<Product> products = productService.findByProductIsActive(true);
         List<Product> filterProducts = new ArrayList<>();
@@ -121,9 +121,9 @@ public class ShopController {
      * @return the string
      */
     @PostMapping("/addToPurchaseOrder")
-    public String addToPurchaseOrder(Model model,
-                                     @ModelAttribute("commandLine") CommandLine commandLine,
-                                     HttpSession session) {
+    public String addToPurchaseOrder(final Model model,
+                                     @ModelAttribute("commandLine") final CommandLine commandLine,
+                                     final HttpSession session) {
 
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         for (CommandLine line : purchaseOrder.getLines()) {

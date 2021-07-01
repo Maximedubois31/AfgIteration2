@@ -81,7 +81,7 @@ public class OrderController {
      */
     @GetMapping("/to-orderpreparator")
     public String getOrder(final Model model,
-                           @RequestParam("idPo") Long idPo) {
+                           @RequestParam("idPo") final Long idPo) {
 
         PurchaseOrder order = purchaseOrderService.getPoById(idPo);
         model.addAttribute("order", order);
