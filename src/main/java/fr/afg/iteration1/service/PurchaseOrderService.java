@@ -43,6 +43,9 @@ public interface PurchaseOrderService {
      */
     List<PurchaseOrder> getAllOrderes();
 
+    List<PurchaseOrder> getAllMyOrderesInProgress(Long idUser);
+    List<PurchaseOrder> getAllMyOrderesFinished(Long idUser);
+
     /**
      * Gets po by id.
      *

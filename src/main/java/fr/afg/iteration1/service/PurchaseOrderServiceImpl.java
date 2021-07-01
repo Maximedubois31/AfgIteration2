@@ -50,6 +50,16 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
     }
 
     @Override
+    public List<PurchaseOrder> getAllMyOrderesInProgress(Long id) {
+        return purchaseOrderDao.findByPurchaseOrderInProgress(id);
+    }
+
+    @Override
+    public List<PurchaseOrder> getAllMyOrderesFinished(Long idUser) {
+        return purchaseOrderDao.findByPurchaseOrderFinished(idUser);
+    }
+
+    @Override
     public PurchaseOrder getPoById(Long id) {
         return purchaseOrderDao.getById(id);
     }

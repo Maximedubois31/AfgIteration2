@@ -2,6 +2,7 @@ package fr.afg.iteration1.dao;
 
 import fr.afg.iteration1.entity.PurchaseOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,4 +18,8 @@ public interface PurchaseOrderDao extends JpaRepository<PurchaseOrder, Long> {
      * @return the list
      */
     List<PurchaseOrder> findByDeliveryDate(LocalDate localDate);
+    @Query("SELECT p FROM PurchaseOrder p WHERE p.preparationDate IS NULL AND p.creator.id = ?1")
+    List<PurchaseOrder> findByPurchaseOrderInProgress(Long id);
+    @Query("SELECT p FROM PurchaseOrder p WHERE p.preparationDate IS NOT NULL AND p.creator.id = ?1")
+    List<PurchaseOrder> findByPurchaseOrderFinished(Long id);
 }
