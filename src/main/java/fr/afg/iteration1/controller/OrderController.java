@@ -122,7 +122,6 @@ public class OrderController {
             if (line.getOrderedQuantity() != null) {
                 total = total
                         + line.getActivePrice()
-                        * line.getProduct().getMoq()
                         * line.getOrderedQuantity();
             }
         }

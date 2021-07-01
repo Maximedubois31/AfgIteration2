@@ -15,6 +15,7 @@ import fr.afg.iteration1.entity.User;
 import fr.afg.iteration1.service.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import fr.afg.iteration1.service.ProductService;
@@ -47,6 +48,8 @@ public class InitDataSet {
     ProductService productService;
 
 
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
     /**
      * Init loved datas.
      */
@@ -60,7 +63,8 @@ public class InitDataSet {
 
         User userTest = new User();
         userTest.setEmail("customer");
-        userTest.setPassword("pass");
+        String password = encoder.encode("pass");
+        userTest.setPassword(password);
         userTest.setRoles("ROLE_CUSTOMER");
         userTest.setActive(true);
         userTest.setFirstName("Romain");
@@ -70,7 +74,8 @@ public class InitDataSet {
 
         User userTest2 = new User();
         userTest2.setEmail("email2");
-        userTest2.setPassword("pass2");
+        password = encoder.encode("pass2");
+        userTest2.setPassword(password);
         userTest2.setRoles("ROLE_CUSTOMER");
         userTest2.setActive(true);
         userTest2.setFirstName("Anthony");
@@ -80,6 +85,7 @@ public class InitDataSet {
 
         User preparator = new User();
         preparator.setEmail("p");
+        password = encoder.encode("p");
         preparator.setPassword("p");
         preparator.setRoles("ROLE_PREPARATOR");
         preparator.setActive(true);
@@ -89,7 +95,8 @@ public class InitDataSet {
 
         User logistic = new User();
         logistic.setEmail("logistic");
-        logistic.setPassword("pass");
+        password = encoder.encode("pass");
+        logistic.setPassword(password);
         logistic.setRoles("ROLE_LOGISTIC");
         logistic.setActive(true);
         logistic.setFirstName("Romain");

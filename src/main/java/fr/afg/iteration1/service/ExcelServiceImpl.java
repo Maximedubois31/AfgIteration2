@@ -103,10 +103,10 @@ public class ExcelServiceImpl implements ExcelService {
             cellName.setCellValue("Produit");
             Cell cellOrderedQuantity = rowHeader.createCell(++cellCount);
             cellOrderedQuantity.setCellValue("Quantité commandé");
-            Cell cellMoq = rowHeader.createCell(++cellCount);
-            cellMoq.setCellValue("Moq");
             Cell cellActivePrice = rowHeader.createCell(++cellCount);
             cellActivePrice.setCellValue("Prix unité");
+            Cell cellPriceHt = rowHeader.createCell(++cellCount);
+            cellPriceHt.setCellValue("HT");
             Cell cellPriceTva = rowHeader.createCell(++cellCount);
             cellPriceTva.setCellValue("TTC");
 
@@ -121,21 +121,19 @@ public class ExcelServiceImpl implements ExcelService {
                 cell1.setCellValue(line.getProduct().getName());
                 Cell cell2 = rowByProduct.createCell(++cellCount);
                 cell2.setCellValue(line.getOrderedQuantity());
-                Cell cell3 = rowByProduct.createCell(++cellCount);
-                cell3.setCellValue(line.getProduct().getMoq()
-                        + " " + line.getProduct().getQuantityUnity());
                 Cell cell4 = rowByProduct.createCell(++cellCount);
                 cell4.setCellValue(line.getActivePrice()
                         + "€ " + line.getProduct().getQuantityUnity());
-                ht += line.getActivePrice();
-                //todo TVA
+                ht += line.getActivePrice()*line.getOrderedQuantity();
+                Cell cell3 = rowByProduct.createCell(++cellCount);
+                cell3.setCellValue(line.getActivePrice()*line.getOrderedQuantity() + " €");
                 Cell cell5 = rowByProduct.createCell(++cellCount);
-                Double activePrice = (double) line.getActivePrice();
+                Double activePrice = (double) line.getActivePrice()*line.getOrderedQuantity();
                 CalculeTvaResponse response = tvaDeleg.getCalculeTva(activePrice, line.getProduct()
                                                                                         .getProductType()
                                                                                         .getVatType()
                                                                                         .getId());
-                cell5.setCellValue(response.getFinalPrice() + "€ " + line.getProduct().getQuantityUnity());
+                cell5.setCellValue(response.getFinalPrice() + "€ ");
                 ttc += response.getFinalPrice();
             }
             //Prix HT
