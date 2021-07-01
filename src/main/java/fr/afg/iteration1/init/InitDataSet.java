@@ -58,7 +58,7 @@ public class InitDataSet {
         User userTest = new User();
         userTest.setEmail("customer");
         String password = encoder.encode("pass");
-        userTest.setPassword("pass");
+        userTest.setPassword(password);
         userTest.setRoles("ROLE_CUSTOMER");
         userTest.setActive(true);
         userTest.setFirstName("Romain");

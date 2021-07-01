@@ -104,6 +104,15 @@ public class OrderController {
         return "orderpreparator";
     }
 
+    @GetMapping("/to-orderSelecteByCustomer")
+    public String getOrderSelectedByCustomer(final Model model,
+                           @RequestParam("idPo") final Long idPo) {
+
+        PurchaseOrder order = purchaseOrderService.getPoById(idPo);
+        model.addAttribute("order", order);
+        return "orderSelectedByCustomer";
+    }
+
     /**
      * Gets selected order.
      *
