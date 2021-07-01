@@ -133,7 +133,14 @@ public class PurchaseOrderController {
         session.setAttribute("purchaseOrder", purchaseOrder);
         return "redirect:purchaseorder";
     }
-    
+
+    @PostMapping("modifCommandLineCli")
+    public String modifCommandLineCli(final Model model, final HttpSession session,
+                                      final Long productId, final Long lineId,
+                                      final Float desiredQuantity, final Long purchaseOrderId) {
+        purchaseOrderService.updatePurchaseOrder(lineId, desiredQuantity);
+        return "redirect:to-orderSelecteByCustomer?idPo="+purchaseOrderId;
+    }
 
      /**
      * Add to purchase order string.
