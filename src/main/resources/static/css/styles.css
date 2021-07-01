@@ -5034,6 +5034,10 @@ img.clippedsmall{
 	vertical-align: middle;
 	text-transform: uppercase;
 }
+
+.mymarginfooter{
+	margin-bottom: 10%;
+}
 /*=============================
 	End Footer CSS
 ===============================*/

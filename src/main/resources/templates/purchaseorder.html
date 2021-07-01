@@ -25,15 +25,14 @@
 						<tbody>
 							<tr th:each="line : ${session.purchaseOrder.lines}">
 								<td th:text="${line.product.name}" class="align-middle"></td>
-								<td>
+								<td class="align-middle">
 									<form action="#" th:action="@{/modifCommandLine}" method="post">
 										<input th:value="${line.desiredQuantity}" id="desiredQuantity"
 											name="desiredQuantity" class="myplaceholder align-middle">
 										<input type="hidden" th:value="${line.product.id}"
 											id="productId" name="productId">
 										<button type="submit"
-											class="btn mb-2 btn btn-outline-dark btn-sm align-middle"
-											style="margin-left: 20px;">Modifier</button>
+											class="btn mb-2 btn btn-outline-dark btn-sm align-middle ml-1">Modifier</button>
 									</form>
 								</td>
 								<td
