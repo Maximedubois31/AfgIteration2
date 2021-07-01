@@ -199,7 +199,7 @@
 
 							<form action="#" th:action="@{/addToPurchaseOrder}"
 								th:object="${commandLine}" method="POST">
-								<input th:field="*{desiredQuantity}" type="text" class="form-control myplaceholder" placeholder="Quantité souhaitée"> <input
+								<input th:field="*{desiredQuantity}" type="number" min="0" class="form-control myplaceholder" placeholder="Quantité souhaitée"> <input
 									type="hidden" th:value="${product.id}" id="product"
 									name="product"> <input type="hidden"
 									th:value="${product.lowPrice}" id="activePrice"
