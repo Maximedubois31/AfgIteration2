@@ -1,19 +1,14 @@
 package fr.afg.iteration1.controller;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpSession;
 
 import fr.afg.iteration1.entity.CommandLine;
 import fr.afg.iteration1.entity.Filtre;
 import fr.afg.iteration1.entity.Product;
 import fr.afg.iteration1.entity.ProductType;
-import fr.afg.iteration1.entity.PurchaseOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -114,46 +109,4 @@ public class ShopController {
 
         return "shop";
     }
-
-    /**
-     * Add to purchase order string.
-     *
-     * @param model       the model
-     * @param commandLine the command line
-     * @param session     the session
-     * @return the string
-     */
-    @PostMapping("/addToPurchaseOrder")
-    public String addToPurchaseOrder(final Model model,
-                                     @ModelAttribute("commandLine") final CommandLine commandLine,
-                                     final HttpSession session) {
-
-        PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
-        
-        LocalTime now = LocalTime.now();
-        //time limit for tomorrow delivery
-        LocalTime timeLimitOrders = LocalTime.parse("12:00:00");
-        
-        if (now.compareTo(timeLimitOrders) > 0) {
-            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(2L));
-        } else {
-            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(1L));
-        }
-        
-        
-        for (CommandLine line : purchaseOrder.getLines()) {
-            if (line.getProduct().getId().equals(commandLine.getProduct().getId())) {
-                line.setDesiredQuantity(commandLine.getDesiredQuantity() + line.getDesiredQuantity());
-                session.setAttribute("purchaseOrder", purchaseOrder);
-                return "redirect:shop";
-            }
-        }
-        commandLine.setActivePrice(commandLine.getProduct().getLowPrice());
-        purchaseOrderService.addCommandLine(purchaseOrder, commandLine);
-        session.setAttribute("purchaseOrder", purchaseOrder);
-
-        return "redirect:shop";
-    }
-
-
 }

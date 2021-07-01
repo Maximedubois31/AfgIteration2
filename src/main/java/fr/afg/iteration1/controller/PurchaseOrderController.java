@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import fr.afg.iteration1.entity.CommandLine;
 import fr.afg.iteration1.entity.PurchaseOrder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class PurchaseOrderController {
     public String getPurchaseOrder(final Model model, final HttpSession session) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         Float total = 0f;
-        String deliveryDate = "12/05/1985";
+        LocalDate deliveryDate = purchaseOrder.getDeliveryDate();
         
         for (CommandLine line : purchaseOrder.getLines()) {
             total = total + line.getActivePrice() * line.getProduct().getMoq() * line.getDesiredQuantity();
@@ -66,7 +68,17 @@ public class PurchaseOrderController {
     @PostMapping("validatePurchaseOrder")
     public String validatePurchaseOrder(final Model model, final HttpSession session) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
-        purchaseOrder.setDeliveryDate(purchaseOrder.getCreationDate().plusDays(1L));
+
+        LocalTime now = LocalTime.now();
+        //time limit for tomorrow delivery
+        LocalTime timeLimitOrders = LocalTime.parse("12:00:00");
+        
+        if (now.compareTo(timeLimitOrders) > 0) {
+            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(2L));
+        } else {
+            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(1L));
+        }
+
         purchaseOrderService.savePurchaseOrder(purchaseOrder);
         User user = userService.getUserById((Long) session.getAttribute("idUser"));
         purchaseOrder = new PurchaseOrder();
@@ -120,6 +132,47 @@ public class PurchaseOrderController {
         }
         session.setAttribute("purchaseOrder", purchaseOrder);
         return "redirect:purchaseorder";
+    }
+    
+
+     /**
+     * Add to purchase order string.
+     *
+     * @param model       the model
+     * @param commandLine the command line
+     * @param session     the session
+     * @return the string
+     */
+    @PostMapping("/addToPurchaseOrder")
+    public String addToPurchaseOrder(final Model model,
+                                     @ModelAttribute("commandLine") final CommandLine commandLine,
+                                     final HttpSession session) {
+
+        PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
+        
+        LocalTime now = LocalTime.now();
+        //time limit for tomorrow delivery
+        LocalTime timeLimitOrders = LocalTime.parse("12:00:00");
+        
+        if (now.compareTo(timeLimitOrders) > 0) {
+            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(2L));
+        } else {
+            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(1L));
+        }
+        
+        
+        for (CommandLine line : purchaseOrder.getLines()) {
+            if (line.getProduct().getId().equals(commandLine.getProduct().getId())) {
+                line.setDesiredQuantity(commandLine.getDesiredQuantity() + line.getDesiredQuantity());
+                session.setAttribute("purchaseOrder", purchaseOrder);
+                return "redirect:shop";
+            }
+        }
+        commandLine.setActivePrice(commandLine.getProduct().getLowPrice());
+        purchaseOrderService.addCommandLine(purchaseOrder, commandLine);
+        session.setAttribute("purchaseOrder", purchaseOrder);
+
+        return "redirect:shop";
     }
 
 }
