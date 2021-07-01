@@ -19,7 +19,7 @@
 							<th class="myheader">Quantité souhaitée</th>
 							<th class="myheader">Ratio minimum</th>
 							<th class="myheader">Prix estimé</th>
-							<th class="myheader">Date de livraison estimée</th>
+							<!-- <th class="myheader">Date de livraison estimée</th> -->
 							<th class="text-center align-middle"><i class="ti-trash remove-icon"></i></th>
 						</thead>
 						<tbody>
@@ -28,7 +28,7 @@
 								<td class="align-middle">
 									<form action="#" th:action="@{/modifCommandLine}" method="post">
 										<input th:value="${line.desiredQuantity}" id="desiredQuantity"
-											name="desiredQuantity" class="myplaceholder align-middle">
+											name="desiredQuantity" class="myplaceholder align-middle mysmallplaceholder">
 
 										<input type="hidden" th:value="${line.product.id}"
 											id="productId" name="productId">
@@ -41,7 +41,7 @@
 									class="align-middle"></td>
 								<td th:text="${line.activePrice*line.desiredQuantity*line.product.moq}"
 									class="align-middle"></td>
-								<td th:text="${#temporals.format(line.purchaseOrder.deliveryDate, 'dd/MM/YYYY')}" class="align-middle"></td>
+								<!-- <td th:text="${#temporals.format(line.purchaseOrder.deliveryDate, 'dd/MM/YYYY')}" class="align-middle"></td> -->
 								<td class="text-center"><a th:href="@{/deleteCommandLine(id=${line.product.id})}"
 										class="btn mb-2 btn btn-outline-dark btn-sm"><i
 											class="ti-trash remove-icon"></i></a></td>
@@ -61,6 +61,7 @@
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
+										<li class="mb-3">Date de livraison estimée : <span th:text="${#temporals.format(deliveryDate, 'dd/MM/YYYY')}"></span></li>
 										<li class="last mybigfont">TOTAL : <span style="float: right;"
 												th:text="${total+'  €'}"></span></li>
 										<li class="last">(estimation H.T.)<span></span></li>

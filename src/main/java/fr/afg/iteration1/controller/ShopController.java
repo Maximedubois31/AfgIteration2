@@ -1,7 +1,19 @@
 package fr.afg.iteration1.controller;
 
-import fr.afg.iteration1.entity.*;
-import fr.afg.iteration1.service.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import fr.afg.iteration1.entity.CommandLine;
+import fr.afg.iteration1.entity.Filtre;
+import fr.afg.iteration1.entity.Product;
+import fr.afg.iteration1.entity.ProductType;
+import fr.afg.iteration1.service.ProductService;
+import fr.afg.iteration1.service.ProductTypeService;
+import fr.afg.iteration1.service.PurchaseOrderService;
+import fr.afg.iteration1.service.Search;
+import fr.afg.iteration1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 /**
  * The type Shop controller.
@@ -103,46 +110,4 @@ public class ShopController {
 
         return "shop";
     }
-
-    /**
-     * Add to purchase order string.
-     *
-     * @param model       the model
-     * @param commandLine the command line
-     * @param session     the session
-     * @return the string
-     */
-    @PostMapping("/addToPurchaseOrder")
-    public String addToPurchaseOrder(final Model model,
-                                     @ModelAttribute("commandLine") final CommandLine commandLine,
-                                     final HttpSession session) {
-
-        PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
-        
-        LocalTime now = LocalTime.now();
-        //time limit for tomorrow delivery
-        LocalTime timeLimitOrders = LocalTime.parse("12:00:00");
-        
-        if (now.compareTo(timeLimitOrders) > 0) {
-            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(2L));
-        } else {
-            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(1L));
-        }
-        
-        
-        for (CommandLine line : purchaseOrder.getLines()) {
-            if (line.getProduct().getId().equals(commandLine.getProduct().getId())) {
-                line.setDesiredQuantity(commandLine.getDesiredQuantity() + line.getDesiredQuantity());
-                session.setAttribute("purchaseOrder", purchaseOrder);
-                return "redirect:shop";
-            }
-        }
-        commandLine.setActivePrice(commandLine.getProduct().getLowPrice());
-        purchaseOrderService.addCommandLine(purchaseOrder, commandLine);
-        session.setAttribute("purchaseOrder", purchaseOrder);
-
-        return "redirect:shop";
-    }
-
-
 }

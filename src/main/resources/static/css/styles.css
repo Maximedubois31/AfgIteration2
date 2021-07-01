@@ -5006,9 +5006,10 @@ img.clippedsmall{
     text-transform: uppercase;
     position: relative;
     text-align: center;
-    width: 130px;
 }
-
+.mysmallplaceholder{
+	width: 130px;
+}
 .myvide{
 	background-color: white;
     position: relative;
