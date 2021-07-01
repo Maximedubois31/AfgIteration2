@@ -1,25 +1,19 @@
 package fr.afg.iteration1.init;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.transaction.Transactional;
-
-import fr.afg.iteration1.entity.CommandLine;
-import fr.afg.iteration1.entity.Company;
-import fr.afg.iteration1.entity.Product;
-import fr.afg.iteration1.entity.PurchaseOrder;
-import fr.afg.iteration1.entity.User;
+import fr.afg.iteration1.entity.*;
+import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.PurchaseOrderService;
+import fr.afg.iteration1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import fr.afg.iteration1.service.ProductService;
-import fr.afg.iteration1.service.UserService;
+import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -86,7 +80,7 @@ public class InitDataSet {
         User preparator = new User();
         preparator.setEmail("p");
         password = encoder.encode("p");
-        preparator.setPassword("p");
+        preparator.setPassword(password);
         preparator.setRoles("ROLE_PREPARATOR");
         preparator.setActive(true);
         preparator.setFirstName("Fabien");
