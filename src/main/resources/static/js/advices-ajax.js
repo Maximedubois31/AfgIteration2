@@ -13,8 +13,7 @@ function doAdvices(productname) {
 
 		var html = "";
 		for (let i = 0; i < dataAdvices.length; i++) {
-			html += "<tr><th scope=\"row\">" + (i + 1)
-				+ "</th><td>" + dataAdvices[i].drinkName + "</td>"
+			html += "<td>" + dataAdvices[i].drinkName + "</td>"
 				+ "</td><td>" + dataAdvices[i].drinkType + "</td></tr>";
 		}
 

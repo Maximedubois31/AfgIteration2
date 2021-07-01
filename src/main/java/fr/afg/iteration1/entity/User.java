@@ -16,6 +16,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type User.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,10 +41,19 @@ public class User {
     @JoinColumn(referencedColumnName = "id")
     private Company company;
 
+    /**
+     * The Creator purchases.
+     */
     @OneToMany(mappedBy = "creator")
     Set<PurchaseOrder> creatorPurchases;
+    /**
+     * The Customer purchases.
+     */
     @OneToMany(mappedBy = "customer")
     Set<PurchaseOrder> customerPurchases;
+    /**
+     * The Preparator purchases.
+     */
     @OneToMany(mappedBy = "preparator")
     Set<PurchaseOrder> preparatorPurchases;
 

@@ -6,7 +6,6 @@ import fr.afg.iteration1.entity.PurchaseOrder;
 import fr.afg.iteration1.ui.response.CalculeTvaResponse;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,6 +17,9 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.Iterator;
 
+/**
+ * The type Excel service.
+ */
 @Service
 public class ExcelServiceImpl implements ExcelService {
 
@@ -25,21 +27,39 @@ public class ExcelServiceImpl implements ExcelService {
     private TvaDelegateImpl tvaDeleg;
 
     @Override
-    public void creerExcel(HttpSession session, PurchaseOrder order) throws IOException, InvalidFormatException {
+    public void creerExcel(HttpSession session, PurchaseOrder order) throws IOException {
 
         //Remove space from company name
         String[] companyNameWithoutSpace = order.getCreator()
-                .getCompany()
-                .getCompanyName()
-                .split(" ");
+                                                .getCompany()
+                                                .getCompanyName()
+                                                .split(" ");
 
-        StringBuffer buf = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < companyNameWithoutSpace.length; ++i) {
-            buf.append(companyNameWithoutSpace[i]);
+            builder.append(companyNameWithoutSpace[i]);
         }
-        String companyName = buf.toString();
+        String companyName = builder.toString();
+        String windowsPath = "C:\\AFG";
+        String linuxPath = "/afg";
+        String actualPathToAfG = "";
+        String SE = System.getProperty("os.name").toLowerCase();
 
-        String excelFilePath = "C:\\Users\\duboi\\OneDrive\\Bureau\\" + companyName + ".xls";
+        if (SE.indexOf("win") >= 0) {
+            actualPathToAfG = windowsPath;
+            File dossier = new File(actualPathToAfG);
+            if(!dossier.exists()){
+                dossier.mkdir();
+            }
+        } else if (SE.indexOf("nux") >= 0) {
+            actualPathToAfG = linuxPath;
+            File dossier = new File(actualPathToAfG);
+            if(!dossier.exists()){
+                dossier.mkdir();
+            }
+        }
+
+        String excelFilePath = "C:\\AFG\\" + companyName + ".xls";
         File file = new File(excelFilePath);
         //Créer un fichier excel si il n'y en a pas pour la company
         if (!file.exists()) {
@@ -141,15 +161,26 @@ public class ExcelServiceImpl implements ExcelService {
         } finally {
 
             try {
-                inputStream.close();
-                workbook.close();
-                outputStream.close();
+                if(inputStream != null) {
+                    inputStream.close();
+                }
+                if(workbook != null) {
+                    workbook.close();
+                }
+                if(outputStream != null) {
+                    outputStream.close();
+                }
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    /**
+     * Auto size columns.
+     *
+     * @param workbook the workbook
+     */
     public void autoSizeColumns(Workbook workbook) {
         int numberOfSheets = workbook.getNumberOfSheets();
         for (int i = 0; i < numberOfSheets; i++) {

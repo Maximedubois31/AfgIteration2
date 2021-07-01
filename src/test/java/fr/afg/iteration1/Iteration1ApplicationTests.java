@@ -11,17 +11,26 @@ import fr.afg.iteration1.ui.response.CalculeTvaResponse;
 import fr.afg.iteration1.ui.response.TvaResponse;
 
 
+/**
+ * The type Iteration 1 application tests.
+ */
 @SpringBootTest
 class Iteration1ApplicationTests {
 
 	@Autowired
 	private TvaDelegateImpl tvaDeleg;
-	
-	@Test
+
+    /**
+     * Context loads.
+     */
+    @Test
 	void contextLoads() {
 	}
 
-	@Test
+    /**
+     * Test delegate get list tva.
+     */
+    @Test
 	public void testDelegateGetListTva() {
 
 		List<TvaResponse> tvaList = tvaDeleg.getAllTva();
@@ -33,7 +42,10 @@ class Iteration1ApplicationTests {
 		Assertions.assertTrue(tvaList.size() > 0);
 	}
 
-	@Test
+    /**
+     * Test delegate get calcule tva.
+     */
+    @Test
 	public void testDelegateGetCalculeTva() {
 
 		CalculeTvaResponse response = tvaDeleg.getCalculeTva(100.0, 2L);
@@ -42,7 +54,10 @@ class Iteration1ApplicationTests {
 		Assertions.assertEquals(110.0, response.getFinalPrice());
 	}
 
-	@Test
+    /**
+     * Test delegate new tva.
+     */
+    @Test
 	public void testDelegateNewTva() {
         
 		TvaResponse newTva = new TvaResponse("vat Code", 7.0, "string label", "String category");
@@ -55,14 +70,20 @@ class Iteration1ApplicationTests {
 
 	}
 
-	@Test
+    /**
+     * Test delegate delete tva.
+     */
+    @Test
 	public void testDelegateDeleteTva() {
 
 		tvaDeleg.deleteTva(1L);
 		
 	}
 
-	@Test
+    /**
+     * Test delegate update tva.
+     */
+    @Test
 	public void testDelegateUpdateTva() {
 
 		TvaResponse newTva = new TvaResponse(1L, "vat Code", 8.0, "string label", "String category");

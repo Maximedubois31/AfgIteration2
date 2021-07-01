@@ -1,12 +1,21 @@
 package fr.afg.iteration1.service;
 
 import fr.afg.iteration1.entity.PurchaseOrder;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The interface Excel service.
+ */
 public interface ExcelService {
 
-    void creerExcel(HttpSession session, PurchaseOrder order) throws IOException, InvalidFormatException;
+    /**
+     * Creer excel.
+     *
+     * @param session the session
+     * @param order   the order
+     * @throws IOException the io exception
+     */
+    void creerExcel(HttpSession session, PurchaseOrder order) throws IOException;
 }

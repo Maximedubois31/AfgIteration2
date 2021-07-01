@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The type Purchase order service.
+ */
 @Service
 @Transactional
 public class PurchaseOrderServiceImpl implements PurchaseOrderService {

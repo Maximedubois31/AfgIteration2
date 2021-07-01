@@ -31,7 +31,7 @@
                         <tbody>
                         <tr th:each="line : ${order.lines}">
                             <td th:text="${line.product.name}" style='vertical-align:middle'></td>
-                            <td th:text="${line.desiredQuantity}" style='vertical-align:middle'></td>
+                            <td th:text="${line.desiredQuantity}+${line.product.quantityUnity}" style='vertical-align:middle'></td>
                             <td th:text="${line.product.moq}+${line.product.quantityUnity}" style='vertical-align:middle'></td>
                             <td>
                                 <form action="#" th:action=@{/updateQuantity} method="POST">
@@ -70,11 +70,12 @@
                     </button>
                 </form>
                 <a th:href="@{/orderes}" class="btn btn-sm btn-secondary">Retour à
-                    la liste des commandes</a>
+                    la liste des commandes</a><br/>
+                <button type="button" th:onclick="generatePDF()">PDF</button>
             </div>
         </div>
     </div>
-    <button type="button" th:onclick="generatePDF()">PDF</button>
+
     <script type="text/javascript" th:src="@{/js/html2pdf.bundle.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/pdf.js}"/>
 </div>

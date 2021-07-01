@@ -17,14 +17,30 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Purchase order controller.
+ */
 @Controller
 public class PurchaseOrderController {
 
+    /**
+     * The User service.
+     */
     @Autowired
     UserService userService;
+    /**
+     * The Purchase order service.
+     */
     @Autowired
     PurchaseOrderService purchaseOrderService;
 
+    /**
+     * Gets purchase order.
+     *
+     * @param model   the model
+     * @param session the session
+     * @return the purchase order
+     */
     @GetMapping("/purchaseorder")
     public String getPurchaseOrder(Model model, HttpSession session) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
@@ -36,6 +52,13 @@ public class PurchaseOrderController {
         return "purchaseorder";
     }
 
+    /**
+     * Validate purchase order string.
+     *
+     * @param model   the model
+     * @param session the session
+     * @return the string
+     */
     @PostMapping("validatePurchaseOrder")
     public String validatePurchaseOrder(Model model, HttpSession session) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
@@ -51,6 +74,13 @@ public class PurchaseOrderController {
         return "redirect:shop";
     }
 
+    /**
+     * Delete command line string.
+     *
+     * @param session the session
+     * @param id      the id
+     * @return the string
+     */
     @GetMapping("deleteCommandLine")
     public String deleteCommandLine(HttpSession session, Long id) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
@@ -66,20 +96,24 @@ public class PurchaseOrderController {
         return "redirect:purchaseorder";
     }
 
+    /**
+     * Modif command line string.
+     *
+     * @param session         the session
+     * @param productId       the product id
+     * @param desiredQuantity the desired quantity
+     * @return the string
+     */
     @PostMapping("modifCommandLine")
     public String modifCommandLine(HttpSession session, Long productId, Float desiredQuantity) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
-        CommandLine lineToDelete = new CommandLine();
-        CommandLine lineToUpdate = new CommandLine();
+        int index = 0;
         for (CommandLine line : purchaseOrder.getLines()) {
             if (line.getProduct().getId().equals(productId)) {
-                lineToDelete = line;
-                lineToUpdate = line;
-                lineToUpdate.setDesiredQuantity(desiredQuantity);
+                purchaseOrder.getLines().get(index).setDesiredQuantity(desiredQuantity);
             }
+            index++;
         }
-        purchaseOrder.getLines().remove(lineToDelete);
-        purchaseOrder.getLines().add(lineToUpdate);
         session.setAttribute("purchaseOrder", purchaseOrder);
         return "redirect:purchaseorder";
     }

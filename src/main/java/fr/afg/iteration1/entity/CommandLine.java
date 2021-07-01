@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Command line.
+ */
 @Getter @Setter @NoArgsConstructor
 
 @Entity
@@ -20,10 +23,25 @@ public class CommandLine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * The id of this CommandLine.
+     */
     private Long id;
+    /**
+     * The orderedQuantity of this CommandLine.
+     */
     private Float orderedQuantity;
+    /**
+     * The desiredQuantity of this CommandLine.
+     */
     private Float desiredQuantity;
+    /**
+     * The discount of this CommandLine.
+     */
     private Float discount;
+    /**
+     * The activePrice of this CommandLine.
+     */
     private Float activePrice;
 
     @ManyToOne

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import fr.afg.iteration1.dao.UserDao;
 import fr.afg.iteration1.entity.User;
 
+/**
+ * The type User service.
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {

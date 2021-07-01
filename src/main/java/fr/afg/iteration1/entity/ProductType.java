@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
+/**
+ * The type Product type.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,6 +36,12 @@ public class ProductType {
     @JoinColumn(referencedColumnName = "id")
     private VATType vatType;
 
+    /**
+     * Instantiates a new Product type.
+     *
+     * @param productType the product type
+     * @param vatType     the vat type
+     */
     public ProductType(String productType, VATType vatType) {
         this.productType = productType;
         this.vatType = vatType;

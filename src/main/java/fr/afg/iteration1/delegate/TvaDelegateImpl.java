@@ -9,11 +9,17 @@ import org.springframework.web.client.RestTemplate;
 import fr.afg.iteration1.ui.response.CalculeTvaResponse;
 import fr.afg.iteration1.ui.response.TvaResponse;
 
+/**
+ * The type Tva delegate.
+ */
 @Component
 public class TvaDelegateImpl implements TvaDelegate{
 
     private RestTemplate restTemplate;
 
+    /**
+     * Instantiates a new Tva delegate.
+     */
     public TvaDelegateImpl() {
         restTemplate = new RestTemplate();
     }

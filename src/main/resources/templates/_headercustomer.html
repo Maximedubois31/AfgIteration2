@@ -1,24 +1,60 @@
 <!DOCTYPE HTML>
-<header xmlns:th="http://www.thymeleaf.org" th:fragment="_header">
-
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">AFG</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-				aria-controls="navbarNavAltMarkup" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<a class="nav-link active" aria-current="page" th:href="@{/shop}">Magasin</a> 
-					<a class="nav-link" th:href="@{/purchaseorder}">Mon panier</a>
-					<a class="nav-link" th:href="@{/logout}">Déconnexion</a>
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="_header"
+	class="header shop">
+		<!-- Topbar -->
+			<div class="topbar">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-5 col-md-12 col-12">
+							<!-- Top Left -->
+							<div class="top-left">
+								<ul class="list-main">
+									<li><i class="ti-headphone-alt"></i> +(033) 06 03 21 56 35</li>
+									<li><i class="ti-email"></i> afg.organisation@gmail.com</li>
+								</ul>
+							</div>
+							<!--/ End Top Left -->
+						</div>
+						<div class="col-lg-7 col-md-12 col-12">
+							<!-- Top Right -->
+							<div class="right-content">
+								<ul class="list-main">
+									<li><i class="ti-location-pin"></i> Adresse</li>
+									<li><i class="ti-user"></i> <a href="#">Mon compte</a></li>
+									<li><i class="ti-power-off"></i><a th:href="@{/logout}">Déconnexion</a></li>
+								</ul>
+							</div>
+							<!-- End Top Right -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Topbar -->
+	<!-- Header Inner -->
+	<div class="header-inner">
+		<div class="container">
+			<div class="cat-nav-head">
+				<div class="row">
+					<div class="col-12">
+						<div class="menu-area">
+							<nav class="navbar navbar-expand-lg">
+								<div class="navbar-collapse">
+									<div class="nav-inner">										<ul class="nav main-menu menu navbar-nav">
+											<li class="active"><a th:href="@{/shop}">AFG</a></li>
+											<li><a th:href="@{/shop}">Magasin</a></li>
+											<li><a th:href="@{/purchaseorder}">Mon Panier</a></li>
+											<li><a th:href="@{/purchaseorder}">Mes Commandes</a></li>
+											
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</nav>
-	</br>
+	</div>
+
 
 </header>

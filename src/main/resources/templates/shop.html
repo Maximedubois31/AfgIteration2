@@ -2,35 +2,84 @@
 <div xmlns:th="http://www.thymeleaf.org" lang="fr"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{_layout}" layout:fragment="content">
-	<div class="container-fluid">
 
-		<div class="row">
-			<div class="col-lg-2 bg-info p-4">
-				<h5 class="text-white">Recherche</h5>
-				<form action="#" th:action="@{/shop}" th:object="${newSearch}"
-					method="POST">
-					<div class="row">
-						<div class="col-10">
-							<input th:field="*{searchText}"
-								class="form-control form-control-sm" type="text"
-								placeholder="Rechercher un produit"
-								aria-label="Rechercher un produit">
+	<div class="container-fluid">
+		<div class="middle-inner header shop js topbar container">
+			<div class="row">
+			
+			<!-- Colonne Left End -->
+				<div class="col-lg-2 col-md-2 col-12">
+					<!-- Search Form -->
+					<div class="search-top">
+						<div class="top-search">
+							<a href="#0"><i class="ti-search"></i></a>
 						</div>
-						<div class="col-2">
-							<input type="submit" class="btn btn-warning btn-sm" value="ok">
+						<!-- Search Form -->
+						<div class="search-top">
+							<form class="search-form">
+								<input type="text" placeholder="Rechercher produit"
+									name="search">
+								<button value="search" type="submit">
+									<i class="ti-search"></i>
+								</button>
+							</form>
+						</div>
+						<!--/ End Search Form -->
+					</div>
+					<!--/ End Search Form -->
+					<div class="mobile-nav"></div>
+				</div>
+				<!-- Colonne Left End -->
+				
+<!-- 				colonne middle notre recherche -->			
+				<div class="col-lg-8 col-md-7 col-12">
+					<div class="search-bar-top">
+						<div class="search-bar">
+							<form action="#" th:action="@{/shop}" th:object="${newSearch}"
+								method="POST">
+								<input th:field="*{searchText}"
+									class="form-control form-control-sm" type="text"
+									placeholder="Rechercher un produit ...."
+									aria-label="Rechercher un produit">
+								<button type="submit" class="btnn">
+									<i class="ti-search"></i>
+								</button>
+							</form>
 						</div>
 					</div>
-				</form>
-				<hr class="my-4">
-				<h5 class="text-white">Filtres</h5>
+				</div>
+				<!-- Colonne Middle End -->
+				
+				
+				<!-- Colonne droite start -->
+				<div class="col-lg-2 col-md-3 col-12">
+					<div class="right-bar">
+						<!-- Search Form -->
+						<div class="sinlge-bar">
+							<a href="#" class="single-icon"></a>
+						</div>
+						<div class="sinlge-bar">
+							<a href="#" class="single-icon"></a>
+						</div>
+					</div>
+				</div>
+<!-- 				Colonne droite end -->
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-lg-2 p-4 backblack text-white">
+				
+				
+				<h5 class="text-white" style="padding-bottom: 60px;">FILTRES</h5>
 
 				<form action="#" method="post" th:action="@{/shop}"
 					th:object="${filtre}">
 					<ul class="list">
 						<li th:each="type : ${types}">
-							<div class="ui checkbox">
+							<div class="ui checkbox" style="padding-bottom: 20px;">
 								<input type="checkbox" th:field="*{filtres}"
-									th:value="${type.id}"> <label
+									th:value="${type.id}" > <label
 									th:text="${type.productType}"></label>
 
 							</div>
@@ -39,13 +88,15 @@
 					<button class="btn btn-warning" type="submit">Filtrer</button>
 				</form>
 			</div>
+<!-- 			ETIQUETTE PRODUIT -->
 			<div class="col-lg-10">
 				<div class="row">
 					<div class="col-lg-3" th:each="product : ${products} ">
-						<div class="card mb-4" style="width: 18rem;">
+						<div class="card mb-4" style="width: 18rem; height: 35rem;">
 							<div class="container">
 								<img th:src="${product.imageUrl}" class="clipped"
-									th:alt="${product.name}">
+									th:alt="${product.name}"
+									onerror="this.onerror=null;this.src='images/logoAFG.png';">
 							</div>
 							<div class="card-body">
 								<h5 class="card-title" th:text="${product.name}"></h5>
@@ -62,7 +113,7 @@
 							</div>
 
 							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-info mb-2"
+							<button type="button" class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
 								data-bs-toggle="modal" th:data-bs-target="${'#id'+ product.id}"
 								style="margin-top: 10px">Détails produit</button>
 
@@ -78,8 +129,9 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<img th:src="${product.imageUrl}" class="card-img-top"
-												th:alt="${product.name}">
+											<img th:src="${product.imageUrl}" class="clipped"
+												th:alt="${product.name}"  
+												onerror="this.onerror=null;this.src='images/logoAFG.png';">
 											<div class="card-body">
 												Catégorie de produit :
 												<p class="card-text"
@@ -88,7 +140,7 @@
 												<p class="card-text" th:text="${product.origin}"></p>
 												<p class="card-text" th:text="${product.brand}"></p>
 												Prix :
-												<p class="card-text" th:text="${product.lowPrice}"></p>
+												<p class="card-text" th:text="${product.lowPrice +' EUR/'+ product.quantityUnity}"></p>
 												Ratio minimum :
 												<p class="card-text" th:text="${product.moq}"></p>
 												Descriptif :
@@ -104,9 +156,10 @@
 							</div>
 
 							<!-- Advice Button trigger modal -->
-							<button type="button" class="btn btn-primary"
-								data-bs-toggle="modal" data-bs-target="#adviceModal"  th:attr="onclick='doAdvices(\'' + ${product.name}+  '\');'">
-								Conseils Pop up</button>
+							<button type="button" class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
+								data-bs-toggle="modal" data-bs-target="#adviceModal"
+								th:attr="onclick='doAdvices(\'' + ${product.name}+  '\');'">
+								L'avis du sommelier</button>
 
 							<!-- 		Modal Conseils -->
 							<div class="modal fade" id="adviceModal" tabindex="-1"
@@ -126,9 +179,8 @@
 												<table class="table">
 													<thead>
 														<tr>
-															<th scope="col">#</th>
 															<th scope="col">Vin(s) conseillé(s)</th>
-															<th scope="col">description</th>
+															<th scope="col">Type</th>
 														</tr>
 													</thead>
 													<tbody id="data">
@@ -149,12 +201,12 @@
 
 							<form action="#" th:action="@{/addToPurchaseOrder}"
 								th:object="${commandLine}" method="POST">
-								<input th:field="*{desiredQuantity}" type="number"> <input
+								<input th:field="*{desiredQuantity}" type="text" class="form-control myplaceholder" placeholder="Quantité souhaitée"> <input
 									type="hidden" th:value="${product.id}" id="product"
 									name="product"> <input type="hidden"
 									th:value="${product.lowPrice}" id="activePrice"
 									name="activePrice">
-								<button type="submit" class="btn btn-info"
+								<button type="submit" class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
 									style="margin-top: 10px">Ajouter au panier</button>
 
 							</form>
@@ -165,6 +217,43 @@
 		</div>
 
 	</div>
+
+	<!-- Jquery -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.0.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<!-- Popper JS -->
+	<script src="js/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Color JS -->
+	<script src="js/colors.js"></script>
+	<!-- Slicknav JS -->
+	<script src="js/slicknav.min.js"></script>
+	<!-- Owl Carousel JS -->
+	<script src="js/owl-carousel.js"></script>
+	<!-- Magnific Popup JS -->
+	<script src="js/magnific-popup.js"></script>
+	<!-- Fancybox JS -->
+	<script src="js/facnybox.min.js"></script>
+	<!-- Waypoints JS -->
+	<script src="js/waypoints.min.js"></script>
+	<!-- Countdown JS -->
+	<script src="js/finalcountdown.min.js"></script>
+	<!-- Nice Select JS -->
+	<script src="js/nicesellect.js"></script>
+	<!-- Ytplayer JS -->
+	<script src="js/ytplayer.min.js"></script>
+	<!-- Flex Slider JS -->
+	<script src="js/flex-slider.js"></script>
+	<!-- ScrollUp JS -->
+	<script src="js/scrollup.js"></script>
+	<!-- Onepage Nav JS -->
+	<script src="js/onepage-nav.min.js"></script>
+	<!-- Easing JS -->
+	<script src="js/easing.js"></script>
+	<!-- Active JS -->
+	<script src="js/active.js"></script>
 	<script src="js/my_ajax_util.js"></script>
 	<script src="js/advices-ajax.js"></script>
 </div>

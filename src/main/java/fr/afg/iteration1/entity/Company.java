@@ -15,6 +15,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Company.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
