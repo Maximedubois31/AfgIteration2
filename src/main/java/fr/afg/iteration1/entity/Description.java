@@ -22,17 +22,31 @@ import lombok.Data;
 @Table
 public class Description {
 
+    /**
+     * The id of this description.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    /**
+     * The description.
+     */
     @Column(length = 500)
     private String description;
+    /**
+     * The date where the last modification has been done for this description.
+     */
     private LocalDate lastModificationDate;
-
+    /**
+     * The product of this description.
+     */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private Product product;
 
+    /**
+     * The language of this description.
+     */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private Language language;

@@ -28,15 +28,29 @@ import java.util.Set;
 @Table
 public class Ingredient {
 
+    /**
+     * The id of this ingredient.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    /**
+     * The name of this ingredient.
+     */
     private String name;
+    /**
+     * The allergen of this ingredient.
+     */
     private String allergen;
 
+    /**
+     * The list of products for this ingredient.
+     */
     @ManyToMany(mappedBy = "ingredients", cascade = CascadeType.ALL)
     private Set<Product> products = new HashSet<Product>();
-
+    /**
+     * The language of this ingredient.
+     */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private Language language;

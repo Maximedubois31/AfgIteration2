@@ -23,11 +23,11 @@ import lombok.Setter;
 @Entity
 public class Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     /**
      * The id of this adress.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
      * The number of this adress.
@@ -49,6 +49,9 @@ public class Address {
      * The country of this adress.
      */
     private String country;
+    /**
+     * The adresse type of this adress.
+     */
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private AddressType address_type;
