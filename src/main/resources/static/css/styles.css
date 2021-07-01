@@ -5006,6 +5006,7 @@ img.clippedsmall{
     text-transform: uppercase;
     position: relative;
     text-align: center;
+    width: 130px;
 }
 
 .myvide{
@@ -5038,54 +5039,3 @@ img.clippedsmall{
 .mymarginfooter{
 	margin-bottom: 10%;
 }
-/*=============================
-	End Footer CSS
-===============================*/
-
-/*=======================
-	PERSO
-=========================
-.RedCssClass { color : red; }
-
-.card-body {
-    height: 250px;
-}
-.list{
-    list-style: none;
-}
-
-
-img.clipped {
-	position : center;
-    height: 100%; 
-    float: left; 
-    float: right; 
-}
-.container {
-	
-    width: 250px; 
-    height: 250px;
-    overflow: hidden;
-}
-footer {
-    background-color: #777;
-    padding: 10px;
-    text-align: center;
-    color: #777;
-}
-
-
-
-body {
-  font-family: 'Oswald', sans-serif !important;
-}
-.img-perso {
-  display: block;
-  max-width:250px;
-  max-height:205px;
-  width: auto;
-  height: auto;
-}
-
-*/
-
