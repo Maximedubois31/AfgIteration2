@@ -1,5 +1,8 @@
 package fr.afg.iteration1.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -126,6 +129,18 @@ public class ShopController {
                                      final HttpSession session) {
 
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
+        
+        LocalTime now = LocalTime.now();
+        //time limit for tomorrow delivery
+        LocalTime timeLimitOrders = LocalTime.parse("12:00:00");
+        
+        if (now.compareTo(timeLimitOrders) > 0) {
+            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(2L));
+        } else {
+            purchaseOrder.setDeliveryDate(LocalDate.now().plusDays(1L));
+        }
+        
+        
         for (CommandLine line : purchaseOrder.getLines()) {
             if (line.getProduct().getId().equals(commandLine.getProduct().getId())) {
                 line.setDesiredQuantity(commandLine.getDesiredQuantity() + line.getDesiredQuantity());

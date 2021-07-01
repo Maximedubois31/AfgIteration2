@@ -45,10 +45,14 @@ public class PurchaseOrderController {
     public String getPurchaseOrder(final Model model, final HttpSession session) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         Float total = 0f;
+        String deliveryDate = "12/05/1985";
+        
         for (CommandLine line : purchaseOrder.getLines()) {
             total = total + line.getActivePrice() * line.getProduct().getMoq() * line.getDesiredQuantity();
         }
+        
         model.addAttribute("total", total);
+        model.addAttribute("deliveryDate", deliveryDate);
         return "purchaseorder";
     }
 
