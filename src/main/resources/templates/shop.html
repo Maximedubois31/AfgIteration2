@@ -93,7 +93,7 @@
 				<div class="row">
 					<div class="col-lg-3" th:each="product : ${products} ">
 						<div class="card mb-4" style="width: 18rem; height: 35rem;">
-							<div class="container">
+							<div class="container text-center">
 								<img th:src="${product.imageUrl}" class="clipped"
 									th:alt="${product.name}"
 									onerror="this.onerror=null;this.src='images/logoAFG.png';">
