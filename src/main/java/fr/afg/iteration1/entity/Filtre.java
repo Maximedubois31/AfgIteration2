@@ -11,6 +11,9 @@ import lombok.Data;
 
 public class Filtre {
 
+    /**
+     * The list filtres of this filtre.
+     */
     private List<ProductType> filtres;
 
 }

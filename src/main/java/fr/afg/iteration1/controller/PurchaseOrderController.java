@@ -42,7 +42,7 @@ public class PurchaseOrderController {
      * @return the purchase order
      */
     @GetMapping("/purchaseorder")
-    public String getPurchaseOrder(Model model, HttpSession session) {
+    public String getPurchaseOrder(final Model model, final HttpSession session) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         Float total = 0f;
         for (CommandLine line : purchaseOrder.getLines()) {
@@ -60,7 +60,7 @@ public class PurchaseOrderController {
      * @return the string
      */
     @PostMapping("validatePurchaseOrder")
-    public String validatePurchaseOrder(Model model, HttpSession session) {
+    public String validatePurchaseOrder(final Model model, final HttpSession session) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         purchaseOrder.setDeliveryDate(purchaseOrder.getCreationDate().plusDays(1L));
         purchaseOrderService.savePurchaseOrder(purchaseOrder);
@@ -82,7 +82,7 @@ public class PurchaseOrderController {
      * @return the string
      */
     @GetMapping("deleteCommandLine")
-    public String deleteCommandLine(HttpSession session, Long id) {
+    public String deleteCommandLine(final HttpSession session, final Long id) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         CommandLine lineToDelete = new CommandLine();
         for (CommandLine line : purchaseOrder.getLines()) {
@@ -105,7 +105,7 @@ public class PurchaseOrderController {
      * @return the string
      */
     @PostMapping("modifCommandLine")
-    public String modifCommandLine(HttpSession session, Long productId, Float desiredQuantity) {
+    public String modifCommandLine(final HttpSession session, final Long productId, final Float desiredQuantity) {
         PurchaseOrder purchaseOrder = (PurchaseOrder) session.getAttribute("purchaseOrder");
         int index = 0;
         for (CommandLine line : purchaseOrder.getLines()) {

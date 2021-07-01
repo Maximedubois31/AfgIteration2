@@ -14,10 +14,25 @@ import java.util.stream.Collectors;
  */
 public class MyUsersDetails implements UserDetails {
 
+    /**
+     * The email of my user
+     */
     private String email;
+    /**
+     * The password of my user
+     */
     private String password;
+    /**
+     * Know if the user have an active account
+     */
     private boolean active;
+    /**
+     * The id of my user
+     */
     private Long id;
+    /**
+     * The authorities of my user
+     */
     private List<GrantedAuthority> authorities;
 
     /**

@@ -20,11 +20,11 @@ import lombok.Setter;
 @Entity(name = "address_type")
 public class AddressType {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     /**
      * The id of this AdressType
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
      * The name of this AdressType.

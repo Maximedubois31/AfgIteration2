@@ -32,14 +32,35 @@ import java.util.Set;
 @Table
 public class Product {
 
+    /**
+     * The id of my product
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    /**
+     * The name of my product
+     */
     private String name;
+    /**
+     * The reference of my product
+     */
     private String ref;
+    /**
+     * The brand of my product
+     */
     private String brand;
+    /**
+     * The image associated to my product
+     */
     private String imageUrl;
+    /**
+     * The origin of my product
+     */
     private String origin;
+    /**
+     * The quantity unity(kg, piece...) of my product
+     */
     private String quantityUnity;
     @Column(length = 500)
     private String description;

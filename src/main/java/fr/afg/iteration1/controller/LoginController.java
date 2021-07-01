@@ -59,7 +59,7 @@ public class LoginController {
                     "|| hasRole('PREPARATOR') " +
                     "|| hasRole('LOGISTIC')")
     @RequestMapping(value = "/afterlogin")
-    public String doAfterLogin(Model model,
+    public String doAfterLogin(final Model model,
                                @RequestParam(name = "idUser", required = false) Long idUser) {
 
         model.addAttribute("products", productService.getAllProduct());
