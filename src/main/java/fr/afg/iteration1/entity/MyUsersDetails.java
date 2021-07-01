@@ -9,6 +9,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type My users details.
+ */
 public class MyUsersDetails implements UserDetails {
 
     private String email;
@@ -17,6 +20,11 @@ public class MyUsersDetails implements UserDetails {
     private Long id;
     private List<GrantedAuthority> authorities;
 
+    /**
+     * Instantiates a new My users details.
+     *
+     * @param user the user
+     */
     public MyUsersDetails(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
@@ -27,6 +35,9 @@ public class MyUsersDetails implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Instantiates a new My users details.
+     */
     public MyUsersDetails() {
     }
 

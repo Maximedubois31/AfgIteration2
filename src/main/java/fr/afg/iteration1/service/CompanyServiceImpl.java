@@ -14,6 +14,9 @@ import fr.afg.iteration1.entity.Address;
 import fr.afg.iteration1.entity.AddressType;
 import fr.afg.iteration1.entity.Company;
 
+/**
+ * The type Company service.
+ */
 @Service
 @Transactional
 public class CompanyServiceImpl implements CompanyService {

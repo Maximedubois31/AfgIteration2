@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Calcule tva response.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,6 +22,16 @@ public class CalculeTvaResponse {
     private Double finalPrice;
 
 
+    /**
+     * Instantiates a new Calcule tva response.
+     *
+     * @param valueVat     the value vat
+     * @param label        the label
+     * @param category     the category
+     * @param amountTva    the amount tva
+     * @param initialPrice the initial price
+     * @param finalPrice   the final price
+     */
     public CalculeTvaResponse(Double valueVat, String label, String category, Double amountTva, Double initialPrice,
             Double finalPrice) {
         this.valueVat = valueVat;

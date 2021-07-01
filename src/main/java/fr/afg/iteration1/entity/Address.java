@@ -14,6 +14,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Address.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,18 +25,42 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * The id of this adress.
+     */
     private Long id;
+    /**
+     * The number of this adress.
+     */
     private String number;
+    /**
+     * The street of this adress.
+     */
     private String street;
+    /**
+     * The city of this adress.
+     */
     private String city;
+    /**
+     * The postCode of this adress.
+     */
     private String zip;
+    /**
+     * The country of this adress.
+     */
     private String country;
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private AddressType address_type;
 
+    /**
+     * The Invoice addresse companies.
+     */
     @OneToMany(mappedBy = "invoiceAddress")
     Set<Company> invoiceAddresseCompanies;
+    /**
+     * The Delivery addresse companies.
+     */
     @OneToMany(mappedBy = "deliveryAddress")
     Set<Company> deliveryAddresseCompanies;
 

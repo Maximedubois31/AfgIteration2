@@ -21,6 +21,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The type Product.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,10 +32,6 @@ import java.util.Set;
 @Table
 public class Product {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

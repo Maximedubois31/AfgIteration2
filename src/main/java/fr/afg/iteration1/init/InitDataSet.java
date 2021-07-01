@@ -21,20 +21,35 @@ import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.UserService;
 
 
+/**
+ * The type Init data set.
+ */
 @Profile("initData")
 @Component
 @Transactional
 public class InitDataSet {
 
+    /**
+     * The User service.
+     */
     @Autowired
     UserService userService;
+    /**
+     * The Purchase order service.
+     */
     @Autowired
     PurchaseOrderService purchaseOrderService;
 
+    /**
+     * The Product service.
+     */
     @Autowired
     ProductService productService;
 
 
+    /**
+     * Init loved datas.
+     */
     @PostConstruct
     public void initLovedDatas() {
 

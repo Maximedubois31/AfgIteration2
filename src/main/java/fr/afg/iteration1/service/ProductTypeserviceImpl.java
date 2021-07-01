@@ -10,13 +10,22 @@ import org.springframework.stereotype.Service;
 import fr.afg.iteration1.dao.ProductTypeDao;
 import fr.afg.iteration1.entity.ProductType;
 
+/**
+ * The type Product typeservice.
+ */
 @Service
 @Transactional
 public class ProductTypeserviceImpl implements ProductTypeService {
 
+    /**
+     * The Product type dao.
+     */
     @Autowired
     ProductTypeDao productTypeDao;
 
+    /**
+     * The Product type service.
+     */
     @Autowired
     ProductTypeService productTypeService;
 
