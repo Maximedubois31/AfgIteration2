@@ -45,6 +45,11 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
     }
 
     @Override
+    public void updatePurchaseOrder(final Long lineId, final Float desiredQuantity) {
+        purchaseOrderDao.update(lineId, desiredQuantity);
+    }
+
+    @Override
     public List<PurchaseOrder> getAllOrderes() {
         return purchaseOrderDao.findAll();
     }

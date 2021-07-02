@@ -35,7 +35,7 @@ public interface PurchaseOrderService {
      * @return the purchase order
      */
     PurchaseOrder addCommandLine(PurchaseOrder purchaseOrder, CommandLine commandLine);
-
+    void updatePurchaseOrder(final Long lineId, final Float desiredQuantity);
     /**
      * Gets all orderes.
      *

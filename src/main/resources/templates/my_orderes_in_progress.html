@@ -28,6 +28,9 @@
 							<td	th:text="${order.creator.firstName +'   '+ order.creator.lastName}" class="align-middle"></td>
 							<td th:text="${order.creator.company.companyName}" class="align-middle"></td>
 							<td th:text="${order.deliveryDate}" class="align-middle text-center"></td>
+							<td class="text-center"><a
+									th:href="@{/to-orderSelecteByCustomer(idPo=${order.id})}"
+									class="btn align-middle text-white">Visualiser commande</a></td>
 						</tr>
 						</tbody>
 					</table>
