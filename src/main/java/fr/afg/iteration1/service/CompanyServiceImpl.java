@@ -50,5 +50,11 @@ public class CompanyServiceImpl implements CompanyService {
         return addressDao.save(address);
     }
 
+    @Override
+    public Company findByIdCompany(Long id) {
+        return companyDao.findById(id).get();
+    }
+
+    
 
 }

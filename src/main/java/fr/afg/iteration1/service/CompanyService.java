@@ -12,12 +12,20 @@ import fr.afg.iteration1.entity.Company;
 public interface CompanyService {
 
     /**
-     * Save company company.
+     * Save company.
      *
      * @param company the company
      * @return the company
      */
     Company saveCompany(Company company);
+
+    /**
+     * Find a company.
+     *
+     * @param id the company id
+     * @return the company
+     */
+    Company findByIdCompany(Long id);
 
     /**
      * Gets all company.
