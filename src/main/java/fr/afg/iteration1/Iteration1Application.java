@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //scrute tous les sous packages tp.dao, tp.service ,
 @EnableJpaRepositories(basePackages = "fr.afg.iteration1.dao")
 public class Iteration1Application extends SpringBootServletInitializer {
-
+	
     /**
      * The entry point of application.
      *

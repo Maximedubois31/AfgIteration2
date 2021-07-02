@@ -20,6 +20,7 @@
 								<th class="myheader">Société</th>
 								<th class="myheader">Date livraison</th>
 								<th class="myheader">Action</th>
+								<th class="myheader">Date préparation</th>
 							</tr>
 						</thead>
 
@@ -36,6 +37,8 @@
 								<td class="text-center"><a
 									th:href="@{/to-orderpreparator(idPo=${order.id})}"
 									class="btn align-middle text-white">Visualiser commande</a></td>
+									<td th:text="${order.preparationDate}"
+									class="align-middle text-center"></td>
 							</tr>
 						</tbody>
 					</table>

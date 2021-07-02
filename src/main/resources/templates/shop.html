@@ -6,8 +6,8 @@
 	<div class="container-fluid">
 		<div class="middle-inner header shop js topbar container">
 			<div class="row">
-			
-			<!-- Colonne Left End -->
+
+				<!-- Colonne Left End -->
 				<div class="col-lg-2 col-md-2 col-12">
 					<!-- Search Form -->
 					<div class="search-top">
@@ -30,8 +30,8 @@
 					<div class="mobile-nav"></div>
 				</div>
 				<!-- Colonne Left End -->
-				
-<!-- 				colonne middle notre recherche -->			
+
+				<!-- 				colonne middle notre recherche -->
 				<div class="col-lg-8 col-md-7 col-12">
 					<div class="search-bar-top">
 						<div class="search-bar">
@@ -49,8 +49,8 @@
 					</div>
 				</div>
 				<!-- Colonne Middle End -->
-				
-				
+
+
 				<!-- Colonne droite start -->
 				<div class="col-lg-2 col-md-3 col-12">
 					<div class="right-bar">
@@ -63,14 +63,14 @@
 						</div>
 					</div>
 				</div>
-<!-- 				Colonne droite end -->
+				<!-- 				Colonne droite end -->
 			</div>
 
 		</div>
 		<div class="row">
 			<div class="col-lg-2 p-4 backblack text-white">
-				
-				
+
+
 				<h5 class="text-white" style="padding-bottom: 60px;">FILTRES</h5>
 
 				<form action="#" method="post" th:action="@{/shop}"
@@ -79,7 +79,7 @@
 						<li th:each="type : ${types}">
 							<div class="ui checkbox" style="padding-bottom: 20px;">
 								<input type="checkbox" th:field="*{filtres}"
-									th:value="${type.id}" > <label
+									th:value="${type.id}"> <label
 									th:text="${type.productType}"></label>
 
 							</div>
@@ -88,7 +88,7 @@
 					<button class="btn btn-warning" type="submit">Filtrer</button>
 				</form>
 			</div>
-<!-- 			ETIQUETTE PRODUIT -->
+			<!-- 			ETIQUETTE PRODUIT -->
 			<div class="col-lg-10">
 				<div class="row">
 					<div class="col-lg-3" th:each="product : ${products} ">
@@ -111,24 +111,21 @@
 							</div>
 
 							<!-- Button trigger modal -->
-							<button type="button" class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
+							<button type="button"
+								class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
 								data-bs-toggle="modal" th:data-bs-target="${'#id'+ product.id}"
 								style="margin-top: 10px">Détails produit</button>
 
 							<!-- Modal -->
 							<div class="modal fade" th:id="${'id'+ product.id}" tabindex="-1"
 								aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-scrollable">
+								<div class="modal-dialog">
 									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel"
-												th:text="${product.name}"></h5>
-											<button type="button" class="btn-close"
-												data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
 										<div class="modal-body">
-											<img th:src="${product.imageUrl}" class="clipped"
-												th:alt="${product.name}"  
+											<h5 class="modal-title text-center" id="exampleModalLabel"
+												th:text="${product.name}"></h5>
+											<img th:src="${product.imageUrl}" class="text-center"
+												style="margin: 0 auto;" th:alt="${product.name}"
 												onerror="this.onerror=null;this.src='images/logoAFG.png';">
 											<div class="card-body">
 												Catégorie de produit :
@@ -138,23 +135,23 @@
 												<p class="card-text" th:text="${product.origin}"></p>
 												<p class="card-text" th:text="${product.brand}"></p>
 												Prix :
-												<p class="card-text" th:text="${product.lowPrice +' EUR/'+ product.quantityUnity}"></p>
+												<p class="card-text"
+													th:text="${product.lowPrice +' EUR/'+ product.quantityUnity}"></p>
 												Ratio minimum :
 												<p class="card-text" th:text="${product.moq}"></p>
 												Descriptif :
 												<p class="card-text" th:text="${product.description}"></p>
+<!-- 												<button type="button" class="btn btn-info mt-1 btm-sm" -->
+<!-- 												data-bs-dismiss="modal">Fermer</button> -->
 											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-info"
-												data-bs-dismiss="modal">Fermer</button>
 										</div>
 									</div>
 								</div>
 							</div>
 
 							<!-- Advice Button trigger modal -->
-							<button type="button" class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
+							<button type="button"
+								class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
 								data-bs-toggle="modal" data-bs-target="#adviceModal"
 								th:attr="onclick='doAdvices(\'' + ${product.name}+  '\');'">
 								L'avis du sommelier</button>
@@ -199,12 +196,14 @@
 
 							<form action="#" th:action="@{/addToPurchaseOrder}"
 								th:object="${commandLine}" method="POST">
-								<input th:field="*{desiredQuantity}" type="number" min="1" class="form-control myplaceholder" placeholder="Quantité souhaitée"> <input
-									type="hidden" th:value="${product.id}" id="product"
-									name="product"> <input type="hidden"
-									th:value="${product.lowPrice}" id="activePrice"
+								<input th:field="*{desiredQuantity}" type="number" min="1"
+									class="form-control myplaceholder"
+									placeholder="Quantité souhaitée"> <input type="hidden"
+									th:value="${product.id}" id="product" name="product"> <input
+									type="hidden" th:value="${product.lowPrice}" id="activePrice"
 									name="activePrice">
-								<button type="submit" class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
+								<button type="submit"
+									class="btn mb-2 btn btn-outline-dark btn-sm btn-block"
 									style="margin-top: 10px">Ajouter au panier</button>
 
 							</form>

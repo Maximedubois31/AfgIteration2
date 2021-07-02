@@ -5040,3 +5040,12 @@ img.clippedsmall{
 .mymarginfooter{
 	margin-bottom: 10%;
 }
+
+.myheaderprep{
+	vertical-align: middle;
+	text-transform: uppercase;
+	font-size: xx-large;
+	margin-top: 10px;
+
+}
+

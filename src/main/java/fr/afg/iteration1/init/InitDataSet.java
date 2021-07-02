@@ -54,11 +54,11 @@ public class InitDataSet {
         company1.setId(1L);
         Company company2 = new Company();
         company2.setId(3L);
-
+        
         User userTest = new User();
         userTest.setEmail("customer");
         String password = encoder.encode("pass");
-        userTest.setPassword("pass");
+        userTest.setPassword(password);
         userTest.setRoles("ROLE_CUSTOMER");
         userTest.setActive(true);
         userTest.setFirstName("Romain");

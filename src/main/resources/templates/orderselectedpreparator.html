@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" lang="fr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<div xmlns:th="http://www.thymeleaf.org" lang="fr"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{_layout}" layout:fragment="content">
 
 	<div class="container-fluid">
@@ -9,7 +10,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<h3>Commande en préparation</h3>
+					<span class="myheaderprep">Commande n°  : </span>
+					<span th:text="${order.id}" class="myheaderprep"></span>
+					<!-- Vide -->
+					<div class="myvide"></div>
+					<!-- End Vide -->
 					<div id="pdf">
 						<table class="table table-striped table-bordered shopping-summery">
 							<thead class="table-dark">
@@ -42,54 +47,55 @@
 						</table>
 					</div>
 				</div>
-				</div>
-				<!-- Vide -->
-				<div class="mysmallvide"></div>
-				<!-- End vide -->
-				<div class="row">
-					<div class="col-12">
-						<div class="total-amount">
-							<div class="row">
-								<div class="col"></div>
-								<div class="col"></div>
-								<div class="col-lg-4 col-md-7 col-12">
-									<div class="right">
-										<ul>
-											<li class="last mybigfont">TOTAL : <span style="float: right;"
-													th:text="${total+'  €'}"></span></li>
-											<li class="last">(estimation H.T.)<span></span></li>
+			</div>
+			<!-- Vide -->
+			<div class="mysmallvide"></div>
+			<!-- End vide -->
+			<div class="row">
+				<div class="col-12">
+					<div class="total-amount">
+						<div class="row">
+							<div class="col"></div>
+							<div class="col"></div>
+							<div class="col-lg-4 col-md-7 col-12">
+								<div class="right">
+									<ul>
+										<li class="last mybigfont">TOTAL : <span
+											style="float: right;" th:text="${total+'  €'}"></span></li>
+										<li class="last">(estimation H.T.)<span></span></li>
 
-											<!-- Vide -->
-											<div class="mysmallvide"></div>
-											<!-- End vide -->
+										<!-- Vide -->
+										<div class="mysmallvide"></div>
+										<!-- End vide -->
 
-											<li>
-												<form action="#" th:action="@{/validateSelectedOrder}"
-													method="POST">
-													<button type="submit"
-														class="btn mb-2 btn btn-outline-dark btn-sm btn-block">
-														La commande est prête</button>
-												</form>
-											</li>
-											<li><a th:href="@{/orderes}"
-												class="btn mb-2 btn btn-outline-dark btn-sm btn-block text-white">Retour
-													à la liste des commandes</a></li>
-											<li>
-												<button type="button" th:onclick="generatePDF()"
+										<li class="mb-3">Date de livraison estimée : <span th:text="${#temporals.format(order.deliveryDate, 'dd/MM/YYYY')}"></span></li>
+										<li>
+											<form action="#" th:action="@{/validateSelectedOrder}"
+												method="POST">
+												<button type="submit"
 													class="btn mb-2 btn btn-outline-dark btn-sm btn-block">
-													PDF</button>
-											</li>
-										</ul>
-									</div>
+													La commande est prête</button>
+											</form>
+										</li>
+										<li><a th:href="@{/orderes}"
+											class="btn mb-2 btn btn-outline-dark btn-sm btn-block text-white">Retour
+												à la liste des commandes</a></li>
+										<li>
+											<button type="button" th:onclick="generatePDF()"
+												class="btn mb-2 btn btn-outline-dark btn-sm btn-block">
+												PDF</button>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Vide -->
+			</div>
+			<!-- Vide -->
 			<div class="myfatvide"></div>
 			<!-- End vide -->
-			
+
 		</div>
 	</div>
 	<script type="text/javascript" th:src="@{/js/html2pdf.bundle.min.js}"></script>
