@@ -5006,9 +5006,10 @@ img.clippedsmall{
     text-transform: uppercase;
     position: relative;
     text-align: center;
-    width: 130px;
 }
-
+.mysmallplaceholder{
+	width: 130px;
+}
 .myvide{
 	background-color: white;
     position: relative;
@@ -5039,3 +5040,12 @@ img.clippedsmall{
 .mymarginfooter{
 	margin-bottom: 10%;
 }
+
+.myheaderprep{
+	vertical-align: middle;
+	text-transform: uppercase;
+	font-size: xx-large;
+	margin-top: 10px;
+
+}
+
