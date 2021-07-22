@@ -1,12 +1,8 @@
 package fr.afg.iteration1.restController;
 
-import fr.afg.iteration1.dto.CompanyRequest;
-import fr.afg.iteration1.dto.CompanyResponse;
-import fr.afg.iteration1.dto.UserRequest;
-import fr.afg.iteration1.dto.UserResponse;
-import fr.afg.iteration1.entity.Address;
+import fr.afg.iteration1.dtoRequest.CompanyRequest;
+import fr.afg.iteration1.dtoResponse.CompanyResponse;
 import fr.afg.iteration1.entity.Company;
-import fr.afg.iteration1.entity.User;
 import fr.afg.iteration1.service.AddressService;
 import fr.afg.iteration1.service.CompanyService;
 import org.springframework.beans.BeanUtils;

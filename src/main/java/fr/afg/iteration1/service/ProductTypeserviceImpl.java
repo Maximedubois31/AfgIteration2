@@ -39,5 +39,10 @@ public class ProductTypeserviceImpl implements ProductTypeService {
         return productTypeDao.save(productType);
     }
 
+    @Override
+    public ProductType findById(Long id) {
+        return productTypeDao.getById(id);
+    }
 
+    
 }

@@ -1,6 +1,5 @@
-package fr.afg.iteration1.dto;
+package fr.afg.iteration1.dtoResponse;
 
-import fr.afg.iteration1.entity.Address;
 import fr.afg.iteration1.entity.Company;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,18 +10,18 @@ import org.springframework.stereotype.Component;
 @Setter
 @NoArgsConstructor
 @Component
-public class CompanyRequest {
+public class CompanyResponse {
 
     private Long id;
     private String companyName;
-    private Address invoiceAddress;
-    private Address deliveryAddress;
+    private String invoiceAddress;
+    private String deliveryAddress;
     private String siret;
     private String email;
     private String phone;
     private String vatNumber;
     private String nafApeCode;
 
-    public CompanyRequest(Company company) {
+    public CompanyResponse(Company company) {
     }
 }

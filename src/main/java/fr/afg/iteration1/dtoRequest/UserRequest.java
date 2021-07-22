@@ -1,5 +1,6 @@
-package fr.afg.iteration1.dto;
+package fr.afg.iteration1.dtoRequest;
 
+import fr.afg.iteration1.entity.Company;
 import fr.afg.iteration1.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @NoArgsConstructor
 @Component
-public class UserResponse {
+public class UserRequest {
 
     private Long id;
     private String firstName;
@@ -19,9 +20,9 @@ public class UserResponse {
     private String password;
     private boolean active;
     private String roles;
-    private String company;
+    private Company company;
 
-    public UserResponse(User user) {
+    public UserRequest(User user) {
     }
 
 }

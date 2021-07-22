@@ -23,5 +23,12 @@ public interface ProductTypeService {
      * @return the all product type
      */
     List <ProductType> getAllProductType();
+
+    /**
+     * Gets product type by ID.
+     *
+     * @return product type
+     */
+    ProductType findById(Long id);
     
 }

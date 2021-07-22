@@ -1,9 +1,8 @@
 package fr.afg.iteration1.restController;
 
-import fr.afg.iteration1.dto.UserRequest;
-import fr.afg.iteration1.dto.UserResponse;
+import fr.afg.iteration1.dtoRequest.UserRequest;
+import fr.afg.iteration1.dtoResponse.UserResponse;
 import fr.afg.iteration1.entity.User;
-import fr.afg.iteration1.service.CompanyService;
 import fr.afg.iteration1.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
