@@ -49,5 +49,6 @@ public interface CompanyService {
      * @return the address
      */
     Address saveAddress(Address address);
+    void deleteCompany(Company company);
 
 }

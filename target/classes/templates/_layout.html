@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="images/favicon.png">
+	<!-- Web Font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+	
+	<!-- StyleSheet -->
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+	<!-- Magnific Popup -->
+    <link rel="stylesheet" href="css/magnific-popup.min.css">
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.css">
+	<!-- Fancybox -->
+	<link rel="stylesheet" href="css/jquery.fancybox.min.css">
+	<!-- Themify Icons -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+	<!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/niceselect.css">
+	<!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+	<!-- Flex Slider CSS -->
+    <link rel="stylesheet" href="css/flex-slider.min.css">
+	<!-- Owl Carousel -->
+    <link rel="stylesheet" href="css/owl-carousel.css">
+	<!-- Slicknav -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+	
+	<!-- Eshop StyleSheet -->
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+	
+
+</head>
+
+<body class="js">
+
+	<div class="container-fluid">
+		<div sec:authorize="hasRole('ROLE_CUSTOMER')">
+  			<div th:replace="_headercustomer"></div>
+		</div>		
+		<div sec:authorize="hasRole('ROLE_PREPARATOR')">
+  			<div th:replace="_headerpreparator"></div>
+		</div>
+		<div sec:authorize="hasRole('ROLE_LOGISTIC')">
+  			<div th:replace="_headerlogistic"></div>
+		</div>
+
+		<div layout:fragment="content" class="mymarginfooter">default content from _layout.html
+			(to override)
+		</div>
+		
+ 		<div th:replace="_footer"></div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+		crossorigin="anonymous">
+	</script>
+
+	
+</body>
+
+</html>

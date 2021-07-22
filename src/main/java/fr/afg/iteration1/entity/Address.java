@@ -49,6 +49,10 @@ public class Address {
      * The country of this adress.
      */
     private String country;
+
+    @Override
+    public String toString() { return  number + " " + street + " " + city + " " + zip + " " + country; }
+
     /**
      * The adresse type of this adress.
      */

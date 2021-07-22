@@ -77,7 +77,7 @@ public class InitDataSet {
         userTest2.setCompany(company2);
         userService.saveUser(userTest2);
 
-        User preparator = new User();
+        /*User preparator = new User();
         preparator.setEmail("p");
         password = encoder.encode("p");
         preparator.setPassword(password);
@@ -95,7 +95,7 @@ public class InitDataSet {
         logistic.setActive(true);
         logistic.setFirstName("Romain");
         logistic.setLastName("Lauret");
-        userService.saveUser(logistic);
+        userService.saveUser(logistic);*/
 
         Product product1 = new Product();
         product1.setId(74L);

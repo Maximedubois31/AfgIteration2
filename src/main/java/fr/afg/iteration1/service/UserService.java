@@ -31,6 +31,8 @@ public interface UserService {
      * @return the user by id
      */
     User getUserById(Long id);
+    User findById(Long id);
+    void deleteUser(User user);
 
     /**
      * Gets user by email.

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajax</title>
+</head>
+
+<body>
+	<h1>test ajax</h1>
+	<input type="hidden" value="roquefort" id="txtCheeseSelected" />
+	<!--     <input type="button" value="Que boire ?" onclick="doAdvices()" /> -->
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Fromage</th>
+					<th scope="col">Type de fromage</th>
+					<th scope="col">Vin(s) conseillé(s)</th>
+					<th scope="col">description</th>
+				</tr>
+			</thead>
+			<tbody id="data">
+			</tbody>
+		</table>
+	</div>
+
+	<script src="js/my_ajax_util.js"></script>
+	<script src="js/advices-ajax.js"></script>
+</body>
+
+</html>
