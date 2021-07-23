@@ -3,6 +3,8 @@ package fr.afg.iteration1.restController;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +49,8 @@ public class productRestController {
     @Autowired
     CompanyService companyService;
 
+    private static final Gson gson = new Gson();
+
     /**
      * List products Json.
      *
@@ -73,7 +77,7 @@ public class productRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("La recherche n'a pas abouti. Problèmes possibles : identifiant, prix ",
+            return new ResponseEntity<String>(gson.toJson("La recherche n'a pas abouti. Problèmes possibles : identifiant, prix "),
                     HttpStatus.BAD_REQUEST);
         }
     }
@@ -97,7 +101,7 @@ public class productRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("La recherche n'a pas abouti. Problèmes possibles : identifiant",
+            return new ResponseEntity<String>(gson.toJson("La recherche n'a pas abouti. Problèmes possibles : identifiant"),
                     HttpStatus.BAD_REQUEST);
         }
     }
@@ -144,7 +148,7 @@ public class productRestController {
         } catch (Exception e) {
            
             e.printStackTrace();
-            return new ResponseEntity<String>("Impossible d'enregistrer les données", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(gson.toJson("Impossible d'enregistrer les données"), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -189,7 +193,7 @@ public class productRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Impossible d'enregistrer les données", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(gson.toJson("Impossible d'enregistrer les données"), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -207,11 +211,11 @@ public class productRestController {
             Product product = productService.findById(id);
             productService.deleteProduct(product);
 
-            return new ResponseEntity<String>("Deleted", HttpStatus.OK);
+            return new ResponseEntity<String>(gson.toJson("Deleted"), HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Impossible de supprimer les données", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>(gson.toJson("Impossible de supprimer les données"), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
