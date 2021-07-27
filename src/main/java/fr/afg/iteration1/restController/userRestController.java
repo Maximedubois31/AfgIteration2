@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin
 @RequestMapping(value="/admin", headers="Accept=application/json")
 public class userRestController {
 
@@ -91,18 +91,19 @@ public class userRestController {
         }
     }
 
-    @DeleteMapping("user/delete/{id}")
+    @PostMapping("user/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
 
         try {
             User userDelete = userService.findById(id);
-            userService.deleteUser(userDelete);
+            userDelete.setActive(false);
+            userService.saveUser(userDelete);
 
-            return new ResponseEntity<String>("Deleted", HttpStatus.OK);
+            return new ResponseEntity<String>("Utilisateur désactivé", HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Impossible de supprimer les données", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Impossible de désactiver l'utilisateur", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
