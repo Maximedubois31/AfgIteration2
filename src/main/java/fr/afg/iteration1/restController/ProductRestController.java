@@ -113,7 +113,7 @@ public class ProductRestController {
      */
     @PostMapping("/product/new")
     public ResponseEntity<?> newProduct(@RequestBody ProductRequest product) {
-
+		
         try {
 
             Product newProduct = new Product();
@@ -130,9 +130,9 @@ public class ProductRestController {
             newProduct.setProductIsActive(product.getProductIsActive());
             newProduct.setLowPrice(product.getLowPrice());
             newProduct.setHighPrice(product.getHighPrice());
-            newProduct.setProductType(productTypeService.findById(product.getProductTypeId()));
+            newProduct.setProductType(productTypeService.findById(product.getProductType()));
             //newProduct.setDescription();
-            newProduct.setSupplier(companyService.findByIdCompany(product.getSupplierId()));
+            newProduct.setSupplier(companyService.findByIdCompany(product.getSupplier()));
             newProduct.setName(product.getName());
 
             //Save
@@ -176,9 +176,9 @@ public class ProductRestController {
             newProduct.setProductIsActive(product.getProductIsActive());
             newProduct.setLowPrice(product.getLowPrice());
             newProduct.setHighPrice(product.getHighPrice());
-            newProduct.setProductType(productTypeService.findById(product.getProductTypeId()));
+            newProduct.setProductType(productTypeService.findById(product.getProductType()));
             //newProduct.setDescription();
-            newProduct.setSupplier(companyService.findByIdCompany(product.getSupplierId()));
+            newProduct.setSupplier(companyService.findByIdCompany(product.getSupplier()));
             newProduct.setName(product.getName());
 
             //Save

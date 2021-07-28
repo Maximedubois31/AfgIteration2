@@ -45,15 +45,15 @@ public class ProductRequest {
     private Boolean productIsActive;
     private Float lowPrice;
     private Float highPrice;
-    private Long productTypeId;
-    private String descriptions;
-    private Long supplierId;
+    private Long productType;
+    //private String descriptions;
+    private Long supplier;
 
 
     
     public ProductRequest(Long id, String name, String ref, String brand, String imageUrl, String origin, String quantityUnity,
-            String description, Float moq, Boolean productIsActive, Float lowPrice, Float highPrice, Long productTypeId,
-            String descriptions, Long supplierId) {
+            String description, Float moq, Boolean productIsActive, Float lowPrice, Float highPrice, Long productType,
+            Long supplier) {
         this.name = name;
         this.ref = ref;
         this.brand = brand;
@@ -65,9 +65,9 @@ public class ProductRequest {
         this.productIsActive = productIsActive;
         this.lowPrice = lowPrice;
         this.highPrice = highPrice;
-        this.productTypeId = productTypeId;
-        this.descriptions = descriptions;
-        this.supplierId = supplierId;
+        this.productType = productType;
+        //this.descriptions = descriptions;
+        this.supplier = supplier;
     }
 
 

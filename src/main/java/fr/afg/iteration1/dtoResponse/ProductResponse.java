@@ -46,13 +46,13 @@ public class ProductResponse {
     //private String productType;
     //private List<Description> descriptions;
     //private Company supplier;
-    private String company;
-    private String productType;
+    private Long supplier;
+    private Long productType;
 
 
     public ProductResponse(Product entity) {
-        this.company = entity.getSupplier().getCompanyName();
-        this.productType = entity.getProductType().getProductType();
+        this.supplier = entity.getSupplier().getId();
+        this.productType = entity.getProductType().getId();
     }
 
 }
