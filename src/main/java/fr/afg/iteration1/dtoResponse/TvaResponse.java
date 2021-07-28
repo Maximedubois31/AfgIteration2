@@ -1,4 +1,4 @@
-package fr.afg.iteration1.ui.response;
+package fr.afg.iteration1.dtoResponse;
 
 import org.springframework.stereotype.Component;
 

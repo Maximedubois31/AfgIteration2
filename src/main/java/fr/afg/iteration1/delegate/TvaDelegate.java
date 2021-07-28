@@ -2,8 +2,8 @@ package fr.afg.iteration1.delegate;
 
 import java.util.List;
 
-import fr.afg.iteration1.ui.response.CalculeTvaResponse;
-import fr.afg.iteration1.ui.response.TvaResponse;
+import fr.afg.iteration1.dtoResponse.CalculeTvaResponse;
+import fr.afg.iteration1.dtoResponse.TvaResponse;
 
 /**
  * The interface Tva delegate.

@@ -29,7 +29,7 @@ import fr.afg.iteration1.service.ProductTypeService;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/admin", headers = "Accept=application/json")
-public class productRestController {
+public class ProductRestController {
 
     /**
      * The Product service.
@@ -101,7 +101,7 @@ public class productRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>(gson.toJson("La recherche n'a pas abouti. Problèmes possibles : identifiant"),
+            return new ResponseEntity<String>(gson.toJson("La recherche n'a pas abouti."),
                     HttpStatus.BAD_REQUEST);
         }
     }
