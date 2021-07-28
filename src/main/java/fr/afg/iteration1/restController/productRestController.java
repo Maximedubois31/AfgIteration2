@@ -27,7 +27,7 @@ import fr.afg.iteration1.service.ProductService;
 import fr.afg.iteration1.service.ProductTypeService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RequestMapping(value = "/admin", headers = "Accept=application/json")
 public class productRestController {
 
@@ -68,7 +68,6 @@ public class productRestController {
                 productResponse = new ProductResponse(product);
                 BeanUtils.copyProperties(product, productResponse);
                 // productResponse.setName(product.getName());
-
                 response.add(productResponse);
 
             }

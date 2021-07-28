@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin
 @RequestMapping(value="/admin", headers="Accept=application/json")
 public class companyRestController {
 

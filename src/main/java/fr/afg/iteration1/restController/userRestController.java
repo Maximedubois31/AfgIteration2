@@ -1,5 +1,6 @@
 package fr.afg.iteration1.restController;
 
+import com.google.gson.Gson;
 import fr.afg.iteration1.dtoRequest.UserRequest;
 import fr.afg.iteration1.dtoResponse.UserResponse;
 import fr.afg.iteration1.entity.User;
@@ -21,6 +22,8 @@ public class userRestController {
     @Autowired
     UserService userService;
 
+    private static final Gson gson = new Gson();
+
     @GetMapping("/users")
     public ResponseEntity<?> getAllUsers() {
 
@@ -38,7 +41,7 @@ public class userRestController {
             return new ResponseEntity<List<UserResponse>>(response, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("La recherche n'a pas aboutie. ", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(gson.toJson("La recherche n'a pas aboutie. "), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -55,7 +58,7 @@ public class userRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("La recherche n'a pas abouti. Problèmes possibles : identifiant", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(gson.toJson("La recherche n'a pas abouti. Problèmes possibles : identifiant"), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -71,7 +74,7 @@ public class userRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Impossible d'enregistrer les données", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(gson.toJson("Impossible d'enregistrer les données"), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -87,7 +90,7 @@ public class userRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Impossible d'enregistrer les données", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(gson.toJson("Impossible d'enregistrer les données"), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -99,11 +102,11 @@ public class userRestController {
             userDelete.setActive(false);
             userService.saveUser(userDelete);
 
-            return new ResponseEntity<String>("Utilisateur désactivé", HttpStatus.OK);
+            return new ResponseEntity<String>(gson.toJson("Utilisateur désactivé"), HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Impossible de désactiver l'utilisateur", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>(gson.toJson("Impossible de désactiver l'utilisateur"), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
