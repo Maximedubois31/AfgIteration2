@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="_header"
+	class="header shop">
+		<!-- Topbar -->
+			<div class="topbar">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-5 col-md-12 col-12">
+							<!-- Top Left -->
+							<div class="top-left">
+								<ul class="list-main">
+									<li><i class="ti-headphone-alt"></i> +(033) 06 03 21 56 35</li>
+									<li><i class="ti-email"></i> afg.organisation@gmail.com</li>
+								</ul>
+							</div>
+							<!--/ End Top Left -->
+						</div>
+						<div class="col-lg-7 col-md-12 col-12">
+							<!-- Top Right -->
+							<div class="right-content">
+								<ul class="list-main">
+									<li><i class="ti-location-pin"></i> Adresse</li>
+									<li><i class="ti-user"></i> <a th:href="@{/user}">Mon compte</a></li>
+									<li><i class="ti-power-off"></i><a th:href="@{/logout}">Déconnexion</a></li>
+								</ul>
+							</div>
+							<!-- End Top Right -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Topbar -->
+	<!-- Header Inner -->
+	<div class="header-inner">
+		<div class="container">
+			<div class="cat-nav-head">
+				<div class="row">
+					<div class="col-12">
+						<div class="menu-area">
+							<nav class="navbar navbar-expand-lg">
+								<div class="navbar-collapse">
+									<div class="nav-inner">										<ul class="nav main-menu menu navbar-nav">
+											<li class="active"><a th:href="@{/shop}">AFG</a></li>
+											<li><a th:href="@{/shop}">Magasin</a></li>
+											<li><a th:href="@{/purchaseorder}">Mon Panier</a></li>
+											<li><a th:href="@{/my_orderes_in_progress}">Mes Commandes en cours</a></li>
+											<li><a th:href="@{/my_orderes_finished}">Historique de mes commandes</a></li>
+											
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</header>

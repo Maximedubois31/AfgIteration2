@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<div xmlns:th="http://www.thymeleaf.org" lang="fr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{_layout}" layout:fragment="content">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h3 th:text="${product.name}"></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-right my-4">
+            <button type="button" class="btn btn-danger text-right" data-bs-toggle="modal"
+                data-bs-target="#modalAlertDelete">
+                Supprimer
+            </button>
+        </div>
+    </div>
+
+    <form action="#" th:action="@{/products/edit}" th:object="${product}" method="POST">
+        <input type="hidden" class="form-control" th:field="*{id}" th:value="*{id}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nom produit</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+        </div>
+        <div class="mb-3">
+            <label for="ref" class="form-label">Reference</label>
+            <input type="text" class="form-control" id="ref" th:field="*{ref}">
+        </div>
+        <div class="mb-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" class="form-control" id="brand" th:field="*{brand}">
+        </div>
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">Image</label>
+            <input type="text" class="form-control" id="imageUrl" th:field="*{imageUrl}">
+        </div>
+        <div class="mb-3">
+            <label for="origin" class="form-label">Origin</label>
+            <input type="text" class="form-control" id="origin" th:field="*{origin}">
+        </div>
+        <div class="mb-3">
+            <label for="quantityUnit" class="form-label">Unité</label>
+            <input type="text" class="form-control" id="quantityUnit" th:field="*{quantityUnity}">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" th:field="*{description}">
+        </div>
+        <div class="mb-3">
+            <label for="moq" class="form-label">Moq</label>
+            <input type="number" class="form-control" id="moq" th:field="*{moq}">
+        </div>
+        <div class="mb-3">
+            <label for="lowPrice" class="form-label">Low Price</label>
+            <input type="number" class="form-control" id="lowPrice" th:field="*{lowPrice}">
+        </div>
+        <div class="mb-3">
+            <label for="highPrice" class="form-label">High Price</label>
+            <input type="number" class="form-control" id="highPrice" th:field="*{highPrice}">
+        </div>
+        <div class="mb-3">
+            <label for="productType" class="form-label">Categories</label>
+            <select class="form-select" aria-label="Default select example" th:field="*{productType}">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.productType}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="productType" class="form-label">Entreprise</label>
+            <select class="form-select" aria-label="Default select example" th:field="*{supplier}">
+                <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.companyName}">
+                </option>
+            </select>
+        </div>
+
+        <div class="text-right">
+            <input class="btn btn-success" type="submit" th:value="Enregistrer">
+        </div>
+    </form>
+    <!-- Modal -->
+    <div class="modal fade" id="modalAlertDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>L'action de suppression est irréversible</p>
+                    <p>Voulez-vous continuer ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                    <a type="button" class="btn btn-primary" th:href="@{/products/delete(id=${product.id})}">Oui</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

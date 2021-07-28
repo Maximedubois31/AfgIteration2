@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" lang="fr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{_layout}" layout:fragment="content">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- CSS Datatable-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="image-fluid my-2" th:src="@{${product.imageUrl}}" th:alt="${product.name}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h5 th:text="${product.name}"></h5>
+            <sub th:text="'Brand : ' + ${product.brand}"></sub>
+            <sub th:text="'Origin : '+ ${product.origin}"></sub>
+            <sub th:text="'Price : - /' + ${product.quantityUnity}"></sub>
+            <sub th:text="'Categorie : '+ ${product.productType.productType}"></sub>
+            <div class="text-right mt-5">
+                <a th:href="@{/products/edit(id=${product.id})}" class="btn btn-sm btn-warning">Modifier</a>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#modalAlertDelete">
+                    Supprimer
+                </button>
+            </div>
+            <hr class="mb-5">
+            <p th:text="${product.description}"></p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAlertDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>L'action de suppression est irréversible</p>
+                    <p>Voulez-vous continuer ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                    <a type="button" class="btn btn-primary" th:href="@{/products/delete(id=${product.id})}">Oui</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
