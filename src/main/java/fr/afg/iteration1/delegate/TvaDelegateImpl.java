@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import fr.afg.iteration1.ui.response.CalculeTvaResponse;
-import fr.afg.iteration1.ui.response.TvaResponse;
+import fr.afg.iteration1.dtoResponse.CalculeTvaResponse;
+import fr.afg.iteration1.dtoResponse.TvaResponse;
 
 /**
  * The type Tva delegate.

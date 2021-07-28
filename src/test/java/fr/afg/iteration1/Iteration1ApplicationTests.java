@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import fr.afg.iteration1.delegate.TvaDelegateImpl;
-import fr.afg.iteration1.ui.response.CalculeTvaResponse;
-import fr.afg.iteration1.ui.response.TvaResponse;
+import fr.afg.iteration1.dtoResponse.CalculeTvaResponse;
+import fr.afg.iteration1.dtoResponse.TvaResponse;
+
 
 
 /**

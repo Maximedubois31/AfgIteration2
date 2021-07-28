@@ -1,9 +1,10 @@
 package fr.afg.iteration1.service;
 
 import fr.afg.iteration1.delegate.TvaDelegateImpl;
+import fr.afg.iteration1.dtoResponse.CalculeTvaResponse;
 import fr.afg.iteration1.entity.CommandLine;
 import fr.afg.iteration1.entity.PurchaseOrder;
-import fr.afg.iteration1.ui.response.CalculeTvaResponse;
+
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;

@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping(value="/admin", headers="Accept=application/json")
-public class userRestController {
+public class UserRestController {
 
     @Autowired
     UserService userService;

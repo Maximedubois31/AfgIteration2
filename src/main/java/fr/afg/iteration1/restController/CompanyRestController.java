@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping(value="/admin", headers="Accept=application/json")
-public class companyRestController {
+public class CompanyRestController {
 
     @Autowired
     CompanyService companyService;
