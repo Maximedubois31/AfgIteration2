@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorate="~{_layout}"
+      layout:fragment="content">
+      
+
+	<title>Clients Management System</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- CSS Datatable-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Liste des users</h1>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<table id="data-table" class="table table-striped table-bordered">
+					<thead class="table-dark">
+						<tr>
+							<th>Id User</th>
+							<th>Prénom user</th>
+							<th>Nom User</th>
+							<!--  <th>Entreprise</th> -->
+							<th>Actions</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="user: ${users}">
+							<td th:text="${user.id}"></td>
+							<td th:text="${user.firstName}"></td>
+							<td th:text="${user.lastName}"></td>
+
+							<!-- <td th:text="${user.company.companyName}"></td> -->
+
+							<td class="text-center"><a th:href="@{/products}"
+								class="btn btn-sm btn-success">Details</a> <a
+								th:href="@{/products}" class="btn btn-sm btn-warning">Modifier</a>
+
+
+								<a th:href="@{/products}" class="btn btn-sm btn-danger">Supprimer</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- JQuery-->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"></script>
+		<!-- JQuery datatable -->
+		<script type="text/javascript" charset="utf8"
+			src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" th:src="@{js/datatable.js}"></script>
+	</div>
+</div>

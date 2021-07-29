@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" lang="fr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{_layout}" layout:fragment="content">
+
+	<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" -->
+	<!--           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+	<!--     CSS Datatable -->
+	<!--     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"> -->
+	<div class="container-fluid">
+		<!-- Vide -->
+		<div class="myvide"></div>
+		<!-- End Vide -->
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<table class="table table-striped table-bordered shopping-summery">
+						<thead class="table-dark">
+							<th class="myheader">Produit</th>
+							<th class="myheader">Quantité souhaitée</th>
+							<th class="myheader">Ratio minimum</th>
+							<th class="myheader">Prix estimé</th>
+							<!-- <th class="myheader">Date de livraison estimée</th> -->
+							<th class="text-center align-middle"><i class="ti-trash remove-icon"></i></th>
+						</thead>
+						<tbody>
+							<tr th:each="line : ${session.purchaseOrder.lines}">
+								<td th:text="${line.product.name}" class="align-middle"></td>
+								<td class="align-middle">
+									<form action="#" th:action="@{/modifCommandLine}" method="post">
+										<input th:value="${line.desiredQuantity}" id="desiredQuantity"
+											name="desiredQuantity" class="myplaceholder align-middle mysmallplaceholder">
+
+										<input type="hidden" th:value="${line.product.id}"
+											id="productId" name="productId">
+										<button type="submit"
+											class="btn mb-2 btn btn-outline-dark btn-sm align-middle ml-1">Modifier</button>
+
+									</form>
+								</td>
+								<td th:text="${line.product.moq +'  '+ line.product.quantityUnity}"
+									class="align-middle"></td>
+								<td th:text="${line.activePrice*line.desiredQuantity*line.product.moq}"
+									class="align-middle"></td>
+								<!-- <td th:text="${#temporals.format(line.purchaseOrder.deliveryDate, 'dd/MM/YYYY')}" class="align-middle"></td> -->
+								<td class="text-center"><a th:href="@{/deleteCommandLine(id=${line.product.id})}"
+										class="btn mb-2 btn btn-outline-dark btn-sm"><i
+											class="ti-trash remove-icon"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- Vide -->
+			<div class="mysmallvide"></div>
+			<!-- End vide -->
+			<div class="row">
+				<div class="col-12">
+					<div class="total-amount">
+						<div class="row">
+							<div class="col-lg-8 col-md-5 col-12"></div>
+							<div class="col-lg-4 col-md-7 col-12">
+								<div class="right">
+									<ul>
+										<li class="mb-3">Date de livraison estimée : <span th:text="${#temporals.format(deliveryDate, 'dd/MM/YYYY')}"></span></li>
+										<li class="last mybigfont">TOTAL : <span style="float: right;"
+												th:text="${total+'  €'}"></span></li>
+										<li class="last">(estimation H.T.)<span></span></li>
+
+										<!-- Vide -->
+										<div class="mysmallvide"></div>
+										<!-- End vide -->
+										<li>
+											<form action="#" th:action="@{/validatePurchaseOrder}" method="POST">
+												<button type="submit"
+													class="btn mb-2 btn btn-outline-dark btn-sm btn-block">Valider
+													le panier</button>
+											</form>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Vide -->
+			<div class="myfatvide"></div>
+			<!-- End vide -->
+		</div>
+	</div>
+	<!-- JQuery-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</div>
