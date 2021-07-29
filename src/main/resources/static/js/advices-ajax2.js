@@ -2,21 +2,21 @@ function doAdvices(productname) {
 
 	//var cheeseSelected = document.getElementById("txtCheeseSelected").value;
 	//var url = "http://localhost:8989/AdviceRest/advice-api-rest/advices/"+cheeseSelected;
-	//var url = "http://localhost:8989/AdviceRest/advice-api-rest/advices/"+productname;
-	var url = "http://localhost:3000/advice/"+productname;
+	var url = "http://localhost:8989/AdviceRest/advice-api-rest/advices/"+productname;
+	//var url = "http://localhost:3000/advice/"+productId;
 
-	console.log('PRODUCT : '+productname);
+	//console.log(productId);
 	//Conversion et affichage
 	var callback = function(data) {
 		console.log("success data=" + data);
 		var dataAdvices = JSON.parse(data);
 		console.log('data advices ' + dataAdvices);
-		console.log('data advices cat' + dataAdvices[0].id);
+		console.log('data advices cat' + dataAdvices[0].category);
 
 		var html = "";
 		for (let i = 0; i < dataAdvices.length; i++) {
-			html += "<td>" + dataAdvices[i].name + "</td>"
-				+ "</td></tr>"
+			html += "<td>" + dataAdvices[i].drinkName + "</td>"
+				+ "</td><td>" + dataAdvices[i].drinkType + "</td></tr>"
 				;
 		}
 
