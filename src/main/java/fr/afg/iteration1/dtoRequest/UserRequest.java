@@ -1,7 +1,5 @@
 package fr.afg.iteration1.dtoRequest;
 
-import fr.afg.iteration1.entity.Company;
-import fr.afg.iteration1.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,9 +18,16 @@ public class UserRequest {
     private String password;
     private boolean active;
     private String roles;
-    private Company company;
+    private Long companyId;
 
-    public UserRequest(User user) {
+    public UserRequest(Long id, String firstName, String lastName, String email, String password, boolean active, String roles, Long companyId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.active = active;
+        this.roles = roles;
+        this.companyId = companyId;
     }
-
 }

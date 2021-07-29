@@ -13,9 +13,9 @@ INSERT INTO `afg_db`.`company`(`id`,`company_name`,`email`,`naf_ape_code`,`phone
 INSERT INTO `afg_db`.`company`(`id`,`company_name`,`email`,`naf_ape_code`,`phone`,`siret`,`vat_number`,`delivery_address_id`,`invoice_address_id`)VALUES(2,'Le Roi du Saucisson','Saucisson@Saucisson.com','0123456','0147758565','45875545','FR45485544',1,2);
 INSERT INTO `afg_db`.`company`(`id`,`company_name`,`email`,`naf_ape_code`,`phone`,`siret`,`vat_number`,`delivery_address_id`,`invoice_address_id`)VALUES(3,'Le Roi du Fromage','fromage@fromage.com','0123456','0147758565','45875545','FR45485544',1,2);
 
-INSERT INTO `afg_db`.`user`(`id`,`active`,`email`,`first_name`,`last_name`,`password`,`roles`,`company_id`)VALUES(1,1,'toto@toto.com','Toto','de Toto','toto','ROLE_USER',1);
-INSERT INTO `afg_db`.`user`(`id`,`active`,`email`,`first_name`,`last_name`,`password`,`roles`,`company_id`)VALUES(2,1,'tata@tata.com','Tata','de Tata','tata','ROLE_USER',1);
-INSERT INTO `afg_db`.`user`(`id`,`active`,`email`,`first_name`,`last_name`,`password`,`roles`,`company_id`)VALUES(3,1,'titi@titi.com','Titi','de Titi','titi','ROLE_USER',1);
+INSERT INTO `afg_db`.`user`(`id`,`active`,`email`,`first_name`,`last_name`,`password`,`roles`,`company_id`)VALUES(1,1,'toto@toto.com','Toto','de Toto','toto','ROLE_CUSTOMER',1);
+INSERT INTO `afg_db`.`user`(`id`,`active`,`email`,`first_name`,`last_name`,`password`,`roles`,`company_id`)VALUES(2,1,'tata@tata.com','Tata','de Tata','tata','ROLE_CUSTOMER',1);
+INSERT INTO `afg_db`.`user`(`id`,`active`,`email`,`first_name`,`last_name`,`password`,`roles`,`company_id`)VALUES(3,1,'titi@titi.com','Titi','de Titi','titi','ROLE_CUSTOMER',1);
 
 
 INSERT INTO `afg_db`.`vat_type`(`id`,`rate`,`start_date`)VALUES('1', '5.5', '2021-01-01');

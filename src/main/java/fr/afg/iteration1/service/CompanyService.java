@@ -27,6 +27,7 @@ public interface CompanyService {
      */
     Company findByIdCompany(Long id);
 
+
     /**
      * Gets all company.
      *
