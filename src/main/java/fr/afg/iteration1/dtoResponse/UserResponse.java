@@ -19,7 +19,7 @@ public class UserResponse {
     private String password;
     private boolean active;
     private String roles;
-    private String company;
+    private Long companyId;
 
     public UserResponse(User user) {
     }

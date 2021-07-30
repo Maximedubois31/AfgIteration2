@@ -41,7 +41,7 @@ public class UserRestController {
             for (User user : users) {
                 response1 = new UserResponse(user);
                 BeanUtils.copyProperties(user, response1);
-                response1.setCompany(user.getCompany().getCompanyName());
+                response1.setCompanyId(user.getCompany().getId());
                 response.add(response1);
             }
             return new ResponseEntity<List<UserResponse>>(response, HttpStatus.OK);
@@ -57,7 +57,7 @@ public class UserRestController {
         try {
             User user = userService.getUserById(id);
             UserResponse response = new UserResponse(user);
-            response.setCompany(user.getCompany().getCompanyName());
+            response.setCompanyId(user.getCompany().getId());
             BeanUtils.copyProperties(user, response);
 
             return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
@@ -106,7 +106,7 @@ public class UserRestController {
             userUpdate.setActive(user.isActive());
             userUpdate.setRoles(user.getRoles());
             //userUpdate.setCompany(companyService.findByIdCompany(1L));
-            System.out.println(user.getCompanyId());
+                System.out.println(user.getCompanyId());
             userUpdate.setCompany(companyService.findByIdCompany(user.getCompanyId()));
 
             //Save
@@ -115,7 +115,7 @@ public class UserRestController {
             //SET response
             UserResponse response = new UserResponse(userUpdate);
             BeanUtils.copyProperties(userAdd, response);
-            response.setCompany(companyService.findByIdCompany(1L).getCompanyName());
+            response.setCompanyId(user.getCompanyId());
 
             return new ResponseEntity<UserResponse>(response, HttpStatus.CREATED);
 
