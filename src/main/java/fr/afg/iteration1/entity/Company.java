@@ -39,15 +39,11 @@ public class Company {
     /**
      * The invoide adress of this company.
      */
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Address invoiceAddress;
+    private String invoiceAddress;
     /**
      * The delivery adress of this company.
      */
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Address deliveryAddress;
+    private String deliveryAddress;
     /**
      * The siret of this company.
      */

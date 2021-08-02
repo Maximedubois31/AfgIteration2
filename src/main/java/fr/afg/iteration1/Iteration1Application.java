@@ -3,7 +3,7 @@ package fr.afg.iteration1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-//import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
@@ -24,10 +24,10 @@ public class Iteration1Application extends SpringBootServletInitializer {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        SpringApplication.run(Iteration1Application.class, args);
-        /* SpringApplication app = new SpringApplication(Iteration1Application.class);
+        //SpringApplication.run(Iteration1Application.class, args);
+        SpringApplication app = new SpringApplication(Iteration1Application.class);
         app.setAdditionalProfiles("initData");
-        app.run(args); */
+        app.run(args);
         System.out.println("http://localhost:8093/login");
     }
 }
